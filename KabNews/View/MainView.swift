@@ -9,10 +9,22 @@
 import SwiftUI
 
 struct MainView: View {
+    
+    @ObservedObject var newsManager = NewsManager()
+    init() {
+        newsManager.fetchNewsData()
+    }
+    
     var body: some View {
         ZStack{
             Color("baseColor").edgesIgnoringSafeArea(.all)
-            TopView(buttonPressed: 0)
+            VStack{
+                TopView(buttonPressed: 0)
+                if newsManager.news.count>0{
+                    Text("\(newsManager.news[0].description)")
+                }
+            }
+            
         }
     }
 }
