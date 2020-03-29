@@ -10,12 +10,12 @@ import Foundation
 
 struct NewsModel : Identifiable {
     
-    var id : Int
-    var sourceName : String
-    var title : String
-    var description : String
-    var image :  URL
-    var newsUrl : URL
-    var date : String
+    var id : Int?
+    var sourceName : String?
+    var title : String?
+    var description : String?
+    var image :  URL?
+    var newsUrl : URL?
+    var date : String?
     var author : String?
 }

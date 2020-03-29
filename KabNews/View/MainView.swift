@@ -11,20 +11,50 @@ import SwiftUI
 struct MainView: View {
     
     @ObservedObject var newsManager = NewsManager()
-    init() {
-        newsManager.fetchNewsData()
-    }
     
     var body: some View {
-        ZStack{
-            Color("baseColor").edgesIgnoringSafeArea(.all)
-            VStack{
-                TopView(buttonPressed: 0)
-                if newsManager.news.count>0{
-                    Text("\(newsManager.news[0].description)")
+        NavigationView{
+            ZStack{
+                GeometryReader{ geo in
+                    Color("baseColor").edgesIgnoringSafeArea(.all)
+                    
+                    VStack(alignment: .leading){
+                        TopView(buttonPressed: 0)
+                            .padding([.bottom])
+                        Text("Hot Topics")
+                            .font(.system(.largeTitle, design: .rounded))
+                            .bold()
+                            .padding([.horizontal])
+                        if self.newsManager.news.count>0{
+                            
+                            ScrollView(.horizontal, showsIndicators: false){
+                                HStack{
+                                    ForEach(self.newsManager.news) { newsItem in
+                                        NavigationLink(destination: HighlightView()){
+                                            Text("-\(newsItem.title!)")
+                                                .bold().font(.headline)
+                                                .frame(width: geo.size.width/2, height: geo.size.height/3, alignment: .bottom)
+                                                .padding()
+                                                .background(Image("christian")
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fill))
+                                                .cornerRadius(40)
+                                                .padding([.leading])
+                                            
+                                            }.buttonStyle(PlainButtonStyle())
+                                            .navigationBarHidden(false)
+                                            .navigationBarTitle("Kab News")
+                                    }
+                                }
+                            }
+                        }
+                        
+                    }
                 }
             }
             
+        }.onAppear {
+            self.newsManager.fetchNewsData()
         }
     }
 }
