@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E55BC58243398B00062FF40 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E55BC57243398B00062FF40 /* ImageLoader.swift */; };
 		4E70AD31242CF9BD007ACD09 /* NewsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E70AD30242CF9BD007ACD09 /* NewsManager.swift */; };
 		4E70AD33242CFE9B007ACD09 /* NewsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E70AD32242CFE9B007ACD09 /* NewsData.swift */; };
 		4E70AD35242D0B57007ACD09 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E70AD34242D0B57007ACD09 /* NewsModel.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4E55BC57243398B00062FF40 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		4E70AD30242CF9BD007ACD09 /* NewsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsManager.swift; sourceTree = "<group>"; };
 		4E70AD32242CFE9B007ACD09 /* NewsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsData.swift; sourceTree = "<group>"; };
 		4E70AD34242D0B57007ACD09 /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				4E70AD30242CF9BD007ACD09 /* NewsManager.swift */,
+				4E55BC57243398B00062FF40 /* ImageLoader.swift */,
 				4E70AD32242CFE9B007ACD09 /* NewsData.swift */,
 				4E70AD34242D0B57007ACD09 /* NewsModel.swift */,
 			);
@@ -182,6 +185,7 @@
 				4EB5500D2427C9AF001BDC2D /* MainView.swift in Sources */,
 				4EB5500F2427CB71001BDC2D /* HighlightView.swift in Sources */,
 				4ECAE56424278A0600BC32AA /* SceneDelegate.swift in Sources */,
+				4E55BC58243398B00062FF40 /* ImageLoader.swift in Sources */,
 				4E70AD31242CF9BD007ACD09 /* NewsManager.swift in Sources */,
 				4ECAE56624278A0600BC32AA /* TopView.swift in Sources */,
 				4E70AD33242CFE9B007ACD09 /* NewsData.swift in Sources */,

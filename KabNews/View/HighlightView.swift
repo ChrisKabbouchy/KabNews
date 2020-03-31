@@ -9,13 +9,19 @@
 import SwiftUI
 
 struct HighlightView: View {
+    @ObservedObject var newsManager : NewsManager
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView{
+            NavigationLink(destination: MainView()){
+                Text(newsManager.news[0].content!)
+                
+            }
+        }
     }
 }
 
-struct HighlightView_Previews: PreviewProvider {
-    static var previews: some View {
-        HighlightView()
-    }
-}
+//struct HighlightView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HighlightView(newsManager: NewsManager.self)
+//    }
+//}

@@ -14,7 +14,8 @@ class NewsManager : ObservableObject{
     
     func fetchNewsData () {
         
-        let baseUrl = "https://newsapi.org/v2/top-headlines?country=us&category=business"
+        let baseUrl = "https://newsapi.org/v2/top-headlines?country=us"
+        //&category=politics"
         let apiKey = "fcf0aefb55a24e739bbb8ea0b5edbad1"
         let finalUrl = "\(baseUrl)&apiKey=\(apiKey)"
         print(finalUrl)
@@ -34,10 +35,9 @@ class NewsManager : ObservableObject{
                 let decoder = JSONDecoder()
                 do {
                     let decodedData = try decoder.decode(NewsData.self, from: safeData)
-                    //print(decodedData.articles)
                     for i in 0..<decodedData.articles.count{
                         let currentItem = decodedData.articles[i]
-                        let newNewsItem  = NewsModel(id: i, sourceName: currentItem.source.name, title: currentItem.title, description: currentItem.description, image: currentItem.urlToImage, newsUrl: currentItem.url, date: currentItem.publishedAt, author: currentItem.author)
+                       let newNewsItem  = NewsModel(id: i, sourceName: currentItem.source.name, title: currentItem.title, description: currentItem.description, imageUrl: currentItem.urlToImage, newsUrl: currentItem.url, date: currentItem.publishedAt, author: currentItem.author,content: currentItem.content)
                         DispatchQueue.main.async {
                             self.news.append(newNewsItem)
                         }

@@ -11,6 +11,7 @@ import SwiftUI
 struct TopView: View {
     
     @State var buttonPressed = 0
+    @State var isPressed = false
     
     var body: some View {
         VStack{
@@ -36,7 +37,7 @@ struct TopView: View {
             }.padding()
             
             HStack{
-                Button (action: {self.buttonPressed = 1}) {
+                Button (action: {self.buttonPressed = 1 ; self.isPressed=true} ) {
                     if buttonPressed == 1 {
                         Text("Tech")
                             .fontWeight(.heavy)
