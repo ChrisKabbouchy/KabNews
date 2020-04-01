@@ -35,10 +35,8 @@ struct MainView: View {
                                             .bold().font(.headline)
                                             .frame(width: geo.size.width/2, height: geo.size.height/3, alignment: .bottom)
                                             .padding()
-                                            .background(//Image(uiImage: newsItem.image!)
+                                            .background(
                                                 imageView(withURL: newsItem.imageUrl!, currentNewsItem: self.newsManager.news[newsItem.id!])
-                                                //                                                .resizable()
-                                                //                                                .aspectRatio(contentMode: .fill)
                                         )
                                             .cornerRadius(40)
                                             .padding([.leading])
@@ -68,21 +66,42 @@ struct imageView: View {
     
     @ObservedObject var imageLoader : ImageLoader
     var newsManager : NewsModel
+    var imageUrl : URL
+    @State var loadedAlready = false
     
     init(withURL url:URL, currentNewsItem:NewsModel) {
-        imageLoader = ImageLoader(url:url)
+        imageLoader = ImageLoader()
         newsManager = currentNewsItem
+        imageUrl = url
     }
     
     var body: some View{
         
-        if imageLoader.dataIsValid == true && newsManager.image == nil{
+        if newsManager.image == nil{
+            imageLoader.loadImage(url: imageUrl)
+        }else{
+            DispatchQueue.main.async {
+                self.loadedAlready = true
+            }
+            
+        }
+        if loadedAlready {
+            return Image(uiImage: newsManager.image!)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+        }
+        else if imageLoader.dataIsValid == true && newsManager.image == nil{
             newsManager.image = UIImage(data: imageLoader.data!)
+            return Image(uiImage: newsManager.image!)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+        }
+        else{
+            return Image(uiImage: UIImage(systemName: "photo.fill")!)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
         }
         
-        return Image(uiImage: (imageLoader.dataIsValid ? newsManager.image : UIImage(systemName: "photo.fill"))!)
-            .resizable()
-            .aspectRatio(contentMode: .fill)
     }
 }
 

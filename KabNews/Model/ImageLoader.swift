@@ -13,12 +13,13 @@ class ImageLoader: ObservableObject {
     @Published var dataIsValid = false
     var data:Data?
 
-    init(url:URL) {
+    func loadImage (url:URL) {
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else { return }
             DispatchQueue.main.async {
                 self.dataIsValid = true
                 self.data = data
+                print("load ")
             }
         }
         task.resume()
