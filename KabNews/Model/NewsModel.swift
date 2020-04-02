@@ -14,14 +14,14 @@ class NewsModel : Identifiable {
     var sourceName : String?
     var title : String?
     var description : String?
-    var imageUrl :  URL?
+    var imageUrl :  String?
     var image : UIImage?
-    var newsUrl : URL?
+    var newsUrl : String?
     var date : String?
     var author : String?
     var content : String?
     
-    init(id:Int?,sourceName:String?,title:String?,description:String?,imageUrl:URL?,newsUrl:URL?,date:String?,author:String?,content:String?) {
+    init(id:Int?,sourceName:String?,title:String?,description:String?,imageUrl:String?,newsUrl:String?,date:String?,author:String?,content:String?) {
         
         self.id=id
         self.author=author

@@ -43,7 +43,7 @@ struct MainView: View {
                                         
                                     }.buttonStyle(PlainButtonStyle())
                                         .sheet(isPresented: self.$isPressed){
-                                            HighlightView(newsManager: self.newsManager)
+                                            HighlightView(newsManager: self.newsManager, email: "",password: "")
                                             
                                     }
                                 }
@@ -66,19 +66,19 @@ struct imageView: View {
     
     @ObservedObject var imageLoader : ImageLoader
     var newsManager : NewsModel
-    var imageUrl : URL
+    var imageUrl : String
     @State var loadedAlready = false
     
-    init(withURL url:URL, currentNewsItem:NewsModel) {
+    init(withURL urlString:String, currentNewsItem:NewsModel) {
         imageLoader = ImageLoader()
         newsManager = currentNewsItem
-        imageUrl = url
+        imageUrl = urlString
     }
     
     var body: some View{
         
         if newsManager.image == nil{
-            imageLoader.loadImage(url: imageUrl)
+            imageLoader.loadImage(urlString: imageUrl)
         }else{
             DispatchQueue.main.async {
                 self.loadedAlready = true

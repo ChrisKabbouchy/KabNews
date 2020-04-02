@@ -35,8 +35,8 @@ class NewsManager : ObservableObject{
                 let decoder = JSONDecoder()
                 do {
                     let decodedData = try decoder.decode(NewsData.self, from: safeData)
-                    for i in 0..<decodedData.articles.count{
-                        let currentItem = decodedData.articles[i]
+                    for i in 0..<decodedData.articles!.count{
+                        let currentItem = decodedData.articles![i]
                        let newNewsItem  = NewsModel(id: i, sourceName: currentItem.source.name, title: currentItem.title, description: currentItem.description, imageUrl: currentItem.urlToImage, newsUrl: currentItem.url, date: currentItem.publishedAt, author: currentItem.author,content: currentItem.content)
                         DispatchQueue.main.async {
                             self.news.append(newNewsItem)

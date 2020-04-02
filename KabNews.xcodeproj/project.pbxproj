@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,7 @@
 		4E70AD31242CF9BD007ACD09 /* NewsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E70AD30242CF9BD007ACD09 /* NewsManager.swift */; };
 		4E70AD33242CFE9B007ACD09 /* NewsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E70AD32242CFE9B007ACD09 /* NewsData.swift */; };
 		4E70AD35242D0B57007ACD09 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E70AD34242D0B57007ACD09 /* NewsModel.swift */; };
+		4EA55AEE243628C300331C43 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4EA55AED243628C300331C43 /* GoogleService-Info.plist */; };
 		4EB5500D2427C9AF001BDC2D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB5500C2427C9AF001BDC2D /* MainView.swift */; };
 		4EB5500F2427CB71001BDC2D /* HighlightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB5500E2427CB71001BDC2D /* HighlightView.swift */; };
 		4ECAE56224278A0600BC32AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ECAE56124278A0600BC32AA /* AppDelegate.swift */; };
@@ -19,13 +20,16 @@
 		4ECAE56824278A0900BC32AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ECAE56724278A0900BC32AA /* Assets.xcassets */; };
 		4ECAE56B24278A0900BC32AA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ECAE56A24278A0900BC32AA /* Preview Assets.xcassets */; };
 		4ECAE56E24278A0900BC32AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ECAE56C24278A0900BC32AA /* LaunchScreen.storyboard */; };
+		C0BADF2815131DC9D30CC70D /* Pods_KabNews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5926DB0BB99D7A751401DD /* Pods_KabNews.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		21CF15BFDED89BCBB59ECE3F /* Pods-KabNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KabNews.debug.xcconfig"; path = "Target Support Files/Pods-KabNews/Pods-KabNews.debug.xcconfig"; sourceTree = "<group>"; };
 		4E55BC57243398B00062FF40 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		4E70AD30242CF9BD007ACD09 /* NewsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsManager.swift; sourceTree = "<group>"; };
 		4E70AD32242CFE9B007ACD09 /* NewsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsData.swift; sourceTree = "<group>"; };
 		4E70AD34242D0B57007ACD09 /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
+		4EA55AED243628C300331C43 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4EB5500C2427C9AF001BDC2D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		4EB5500E2427CB71001BDC2D /* HighlightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightView.swift; sourceTree = "<group>"; };
 		4ECAE55E24278A0600BC32AA /* KabNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KabNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -36,6 +40,8 @@
 		4ECAE56A24278A0900BC32AA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4ECAE56D24278A0900BC32AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4ECAE56F24278A0900BC32AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A5926DB0BB99D7A751401DD /* Pods_KabNews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KabNews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A5BF9B1B1FC40A1BE9C086F /* Pods-KabNews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KabNews.release.xcconfig"; path = "Target Support Files/Pods-KabNews/Pods-KabNews.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,12 +49,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0BADF2815131DC9D30CC70D /* Pods_KabNews.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E90774888012E08C36DAC3E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				21CF15BFDED89BCBB59ECE3F /* Pods-KabNews.debug.xcconfig */,
+				9A5BF9B1B1FC40A1BE9C086F /* Pods-KabNews.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		39AB75B156756953D4C8BC28 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8A5926DB0BB99D7A751401DD /* Pods_KabNews.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4E70AD2C242CF956007ACD09 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +99,8 @@
 			children = (
 				4ECAE56024278A0600BC32AA /* KabNews */,
 				4ECAE55F24278A0600BC32AA /* Products */,
+				1E90774888012E08C36DAC3E /* Pods */,
+				39AB75B156756953D4C8BC28 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,6 +122,7 @@
 				4ECAE56724278A0900BC32AA /* Assets.xcassets */,
 				4ECAE56C24278A0900BC32AA /* LaunchScreen.storyboard */,
 				4ECAE56F24278A0900BC32AA /* Info.plist */,
+				4EA55AED243628C300331C43 /* GoogleService-Info.plist */,
 				4ECAE56924278A0900BC32AA /* Preview Content */,
 			);
 			path = KabNews;
@@ -116,9 +143,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4ECAE57224278A0900BC32AA /* Build configuration list for PBXNativeTarget "KabNews" */;
 			buildPhases = (
+				ADC8FF2B4E024A1852CE7260 /* [CP] Check Pods Manifest.lock */,
 				4ECAE55A24278A0600BC32AA /* Sources */,
 				4ECAE55B24278A0600BC32AA /* Frameworks */,
 				4ECAE55C24278A0600BC32AA /* Resources */,
+				827B209BDA60FAA959A2B039 /* [CP] Embed Pods Frameworks */,
+				49FFED246A811CCD674F28B2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -168,12 +198,72 @@
 			buildActionMask = 2147483647;
 			files = (
 				4ECAE56E24278A0900BC32AA /* LaunchScreen.storyboard in Resources */,
+				4EA55AEE243628C300331C43 /* GoogleService-Info.plist in Resources */,
 				4ECAE56B24278A0900BC32AA /* Preview Assets.xcassets in Resources */,
 				4ECAE56824278A0900BC32AA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		49FFED246A811CCD674F28B2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KabNews/Pods-KabNews-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KabNews/Pods-KabNews-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KabNews/Pods-KabNews-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		827B209BDA60FAA959A2B039 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KabNews/Pods-KabNews-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-KabNews/Pods-KabNews-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-KabNews/Pods-KabNews-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ADC8FF2B4E024A1852CE7260 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KabNews-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4ECAE55A24278A0600BC32AA /* Sources */ = {
@@ -322,6 +412,7 @@
 		};
 		4ECAE57324278A0900BC32AA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21CF15BFDED89BCBB59ECE3F /* Pods-KabNews.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -342,6 +433,7 @@
 		};
 		4ECAE57424278A0900BC32AA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A5BF9B1B1FC40A1BE9C086F /* Pods-KabNews.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

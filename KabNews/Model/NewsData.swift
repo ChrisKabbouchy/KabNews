@@ -12,7 +12,7 @@ struct NewsData : Decodable {
     
     var status : String?
     var totalResults : Int?
-    var articles : [articlesData]
+    var articles : [articlesData]?
 }
 
 struct articlesData : Decodable{
@@ -21,8 +21,8 @@ struct articlesData : Decodable{
     var author : String?
     var title : String?
     var description : String?
-    var url : URL?
-    var urlToImage : URL?
+    var url : String?
+    var urlToImage : String?
     var publishedAt : String?
     var content : String?
     

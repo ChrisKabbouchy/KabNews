@@ -7,16 +7,65 @@
 //
 
 import SwiftUI
+import Firebase
+import GoogleSignIn
 
 struct HighlightView: View {
     @ObservedObject var newsManager : NewsManager
+    @State var email :  String
+    @State var password : String
     var body: some View {
         NavigationView{
-            NavigationLink(destination: MainView()){
-                Text(newsManager.news[0].content!)
-                
+            VStack{
+                TextField("email", text: $email)
+                TextField("password", text: $password)
+                Button(action:{
+                    Auth.auth().signIn(withEmail: self.email, password: self.password) { authResult, error in
+                        if error != nil{
+                            print(error!)
+                            return
+                        }
+                        print(authResult?.user.email ?? " " )
+                    }
+                    
+                } ){
+                    Text("signIn")
+                }
+                Button(action:{
+                    Auth.auth().createUser(withEmail: self.email, password: self.password) { authResult, error in
+                        if error != nil{
+                            print(error!)
+                            return
+                    }
+                        print(authResult?.user.email ?? " " )
+                    }
+                    
+                } ){
+                    Text("signUp")
+                }
+                GoogleSignView()
+                    .frame(width: 150,height: 55)
             }
+            
+            
+            
         }
+    }
+}
+struct GoogleSignView : UIViewRepresentable {
+    
+    func makeUIView(context: UIViewRepresentableContext<GoogleSignView>) -> GIDSignInButton {
+        
+        let button = GIDSignInButton()
+        button.colorScheme = .light
+        GIDSignIn.sharedInstance()?.presentingViewController = UIApplication.shared.windows.last?.rootViewController
+        return button
+        
+    }
+    
+    func updateUIView(_ uiView: GIDSignInButton, context: UIViewRepresentableContext<GoogleSignView>) {
+        
+        
     }
 }
 
