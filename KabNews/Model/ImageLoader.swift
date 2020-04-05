@@ -13,8 +13,9 @@ class ImageLoader: ObservableObject {
     @Published var dataIsValid = false
     var data:Data?
 
-    func loadImage (urlString:String) {
-        guard let url = URL(string: urlString) else { return }
+    func loadImage (urlString:String?) {
+        if let safeUrl = urlString {
+        guard let url = URL(string: safeUrl) else { return }
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             guard let data = data else { return }
             DispatchQueue.main.async {
@@ -24,5 +25,6 @@ class ImageLoader: ObservableObject {
             }
         }
         task.resume()
+        }
     }
 }

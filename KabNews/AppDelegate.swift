@@ -28,7 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
                 print(error!)
                 return
             }
-            print(result?.user.displayName!)
+            print(result?.user.photoURL! ?? "")
+            UserDefaults.standard.set(result?.user.displayName, forKey: "user-name")
+            UserDefaults.standard.set(true, forKey: "logged-in")
+            NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
         }
     }
 

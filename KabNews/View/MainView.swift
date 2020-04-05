@@ -11,7 +11,6 @@ import SwiftUI
 struct MainView: View {
     
     @ObservedObject var newsManager = NewsManager()
-    
     @State var isPressed = false
     
     var body: some View {
@@ -30,21 +29,22 @@ struct MainView: View {
                         ScrollView(.horizontal, showsIndicators: false){
                             HStack{
                                 ForEach(self.newsManager.news) { newsItem in
-                                    Button(action: {self.isPressed = true}){
+                                    Button( action: {self.isPressed = true}){
                                         Text("-\(newsItem.title!)")
-                                            .bold().font(.headline)
+                                            .bold()
+                                            .foregroundColor(Color.white)
+                                            .font(.headline)
                                             .frame(width: geo.size.width/2, height: geo.size.height/3, alignment: .bottom)
                                             .padding()
                                             .background(
-                                                imageView(withURL: newsItem.imageUrl!, currentNewsItem: self.newsManager.news[newsItem.id!])
-                                        )
-                                            .cornerRadius(40)
+                                                imageView(withURL: newsItem.imageUrl, currentNewsItem: self.newsManager.news[newsItem.id!])
+                                        ) .cornerRadius(40)
                                             .padding([.leading])
+                                    }
+                                    .sheet(isPresented: self.$isPressed){
+                                        //HighlightView(newsManager: self.newsManager, email: "",password: "")
+                                        LogInView()
                                         
-                                    }.buttonStyle(PlainButtonStyle())
-                                        .sheet(isPresented: self.$isPressed){
-                                            HighlightView(newsManager: self.newsManager, email: "",password: "")
-                                            
                                     }
                                 }
                                 
@@ -66,10 +66,10 @@ struct imageView: View {
     
     @ObservedObject var imageLoader : ImageLoader
     var newsManager : NewsModel
-    var imageUrl : String
+    var imageUrl : String?
     @State var loadedAlready = false
     
-    init(withURL urlString:String, currentNewsItem:NewsModel) {
+    init(withURL urlString:String?, currentNewsItem:NewsModel) {
         imageLoader = ImageLoader()
         newsManager = currentNewsItem
         imageUrl = urlString
@@ -87,17 +87,20 @@ struct imageView: View {
         }
         if loadedAlready {
             return Image(uiImage: newsManager.image!)
+                .renderingMode(.original)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
         }
         else if imageLoader.dataIsValid == true && newsManager.image == nil{
             newsManager.image = UIImage(data: imageLoader.data!)
             return Image(uiImage: newsManager.image!)
+                .renderingMode(.original)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
         }
         else{
             return Image(uiImage: UIImage(systemName: "photo.fill")!)
+                .renderingMode(.original)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
         }

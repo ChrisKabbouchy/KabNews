@@ -52,23 +52,6 @@ struct HighlightView: View {
         }
     }
 }
-struct GoogleSignView : UIViewRepresentable {
-    
-    func makeUIView(context: UIViewRepresentableContext<GoogleSignView>) -> GIDSignInButton {
-        
-        let button = GIDSignInButton()
-        button.colorScheme = .light
-        GIDSignIn.sharedInstance()?.presentingViewController = UIApplication.shared.windows.last?.rootViewController
-        return button
-        
-    }
-    
-    func updateUIView(_ uiView: GIDSignInButton, context: UIViewRepresentableContext<GoogleSignView>) {
-        
-        
-    }
-}
-
 //struct HighlightView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        HighlightView(newsManager: NewsManager.self)
