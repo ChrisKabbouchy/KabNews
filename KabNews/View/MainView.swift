@@ -25,26 +25,30 @@ struct MainView: View {
                         .bold()
                         .padding([.horizontal])
                     if self.newsManager.news.count>0{
-                        
                         ScrollView(.horizontal, showsIndicators: false){
                             HStack{
                                 ForEach(self.newsManager.news) { newsItem in
                                     Button( action: {self.isPressed = true}){
                                         Text("-\(newsItem.title!)")
                                             .bold()
+                                            .lineLimit(5)
                                             .foregroundColor(Color.white)
+                                            .background(Rectangle()
+                                                .frame( width: geo.size.width, height:  geo.size.height/5.5,alignment: .bottom)
+                                                .foregroundColor(Color.black)
+                                                .blur(radius: 2)
+                                                .opacity(0.3))
                                             .font(.headline)
-                                            .frame(width: geo.size.width/2, height: geo.size.height/3, alignment: .bottom)
                                             .padding()
+                                            .frame(width: geo.size.width/2, height: geo.size.height/3, alignment: .bottom)
                                             .background(
                                                 imageView(withURL: newsItem.imageUrl, currentNewsItem: self.newsManager.news[newsItem.id!])
-                                        ) .cornerRadius(40)
+                                        )
+                                            .cornerRadius(40)
                                             .padding([.leading])
                                     }
                                     .sheet(isPresented: self.$isPressed){
-                                        //HighlightView(newsManager: self.newsManager, email: "",password: "")
                                         LogInView()
-                                        
                                     }
                                 }
                                 
@@ -83,7 +87,6 @@ struct imageView: View {
             DispatchQueue.main.async {
                 self.loadedAlready = true
             }
-            
         }
         if loadedAlready {
             return Image(uiImage: newsManager.image!)

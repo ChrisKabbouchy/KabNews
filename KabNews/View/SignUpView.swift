@@ -60,6 +60,9 @@ struct SignUpView: View {
                                 return
                             }
                             print(authResult?.user.email ?? "no name" )
+                            UserDefaults.standard.set(authResult?.user.displayName, forKey: "user-name")
+                            UserDefaults.standard.set(true, forKey: "logged-in")
+                            NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
                         }
                         
                     } ){

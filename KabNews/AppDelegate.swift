@@ -6,7 +6,7 @@
 //  Copyright © 2020 Christian Kabouchy. All rights reserved.
 //
 
-import UIKit
+import SwiftUI
 import Firebase
 import GoogleSignIn
 

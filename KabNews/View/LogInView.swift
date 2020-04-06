@@ -15,6 +15,7 @@ struct LogInView: View {
     @State var email :  String = ""
     @State var password : String = ""
     @State var isPresented : Bool = false
+    @State var showingAlert = false
     
     var body: some View {
         GeometryReader{ geo in
@@ -50,9 +51,12 @@ struct LogInView: View {
                             print(authResult?.user.displayName ?? " " )
                             UserDefaults.standard.set(authResult?.user.displayName, forKey: "user-name")
                             UserDefaults.standard.set(true, forKey: "logged-in")
+                             NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
+                            self.showingAlert.toggle()
                         }
                         
-                    } ){
+                    }
+                    ){
                         Text("LOGIN")
                             .bold()
                             .padding(.horizontal)
@@ -60,6 +64,8 @@ struct LogInView: View {
                             .foregroundColor(Color.white)
                             .background(Color("secondColor"))
                             .cornerRadius(10)
+                    }.alert(isPresented: self.$showingAlert){
+                        Alert(title: Text("hello"), message: Text("hello"),dismissButton: .default(Text("ok")))
                     }
                     GoogleSignView()
                         .frame(width: 150, height: 50)
@@ -83,7 +89,6 @@ struct LogInView: View {
                     
                 }
             }
-            
         }
     }
 }
