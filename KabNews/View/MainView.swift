@@ -48,7 +48,7 @@ struct MainView: View {
                                             .padding([.leading])
                                     }
                                     .sheet(isPresented: self.$isPressed){
-                                        LogInView()
+                                        HighlightView()
                                     }
                                 }
                                 

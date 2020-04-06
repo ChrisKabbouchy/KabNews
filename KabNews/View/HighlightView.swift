@@ -11,49 +11,62 @@ import Firebase
 import GoogleSignIn
 
 struct HighlightView: View {
-    @ObservedObject var newsManager : NewsManager
-    @State var email :  String
-    @State var password : String
+    
     var body: some View {
-        NavigationView{
-            VStack{
-                TextField("email", text: $email)
-                TextField("password", text: $password)
-                Button(action:{
-                    Auth.auth().signIn(withEmail: self.email, password: self.password) { authResult, error in
-                        if error != nil{
-                            print(error!)
-                            return
+        GeometryReader{ geo in
+            ZStack{
+                Color("baseColor")
+                    .edgesIgnoringSafeArea(.all)
+                VStack{
+                    Image("christian")
+                        .resizable()
+                        .edgesIgnoringSafeArea(.all).frame( height: geo.size.height/3,alignment: .top)
+                    ZStack (alignment: .topLeading) {
+                        Color("baseColor")
+                            .edgesIgnoringSafeArea(.all).frame( height: geo.size.height/1.5,alignment: .top)
+                        VStack(alignment:.center) {
+                            VStack (alignment: .leading) {
+                                Text("Source")
+                                    .font(.largeTitle)
+                                    .fontWeight(.bold)
+                                Text("author")
+                                    .font(.headline)
+                                .fontWeight(.bold)
+                                Text("Date")
+                                    .font(.caption)
+                                    .fontWeight(.bold)
+                                Divider()
+                                    .padding()
+                                Text("title")
+                                .font(.caption)
+                                .fontWeight(.bold)
+                                Text("the news")
+                                .font(.caption)
+                                .fontWeight(.bold)
+                                Spacer()
+                                
+                            }.padding()
+                            Button(action: {}){
+                                Text("Read full article")
+                                .bold()
+                                .padding()
+                                .frame(width: geo.size.width - 100,height: 50 ,alignment: .center)
+                                .foregroundColor(Color.white)
+                                .background(Color("secondColor"))
+                                .cornerRadius(10)
+                            }
                         }
-                        print(authResult?.user.email ?? " " )
+                        
+                        
                     }
                     
-                } ){
-                    Text("signIn")
                 }
-                Button(action:{
-                    Auth.auth().createUser(withEmail: self.email, password: self.password) { authResult, error in
-                        if error != nil{
-                            print(error!)
-                            return
-                    }
-                        print(authResult?.user.email ?? " " )
-                    }
-                    
-                } ){
-                    Text("signUp")
-                }
-                GoogleSignView()
-                    .frame(width: 150,height: 55)
             }
-            
-            
-            
         }
     }
 }
-//struct HighlightView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HighlightView(newsManager: NewsManager.self)
-//    }
-//}
+struct HighlightView_Previews: PreviewProvider {
+    static var previews: some View {
+        HighlightView().environment(\.colorScheme, .dark)
+    }
+}
