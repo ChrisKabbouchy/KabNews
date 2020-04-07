@@ -10,8 +10,9 @@ import SwiftUI
 
 struct MainView: View {
     
-    @ObservedObject var newsManager = NewsManager()
+    @EnvironmentObject var newsManager : NewsManager
     @State var isPressed = false
+    @State var newsID : Int?
     
     var body: some View {
         ZStack{
@@ -28,7 +29,7 @@ struct MainView: View {
                         ScrollView(.horizontal, showsIndicators: false){
                             HStack{
                                 ForEach(self.newsManager.news) { newsItem in
-                                    Button( action: {self.isPressed = true}){
+                                    Button( action: {self.isPressed = true;self.newsID = newsItem.id}){
                                         Text("-\(newsItem.title!)")
                                             .bold()
                                             .lineLimit(5)
@@ -48,7 +49,7 @@ struct MainView: View {
                                             .padding([.leading])
                                     }
                                     .sheet(isPresented: self.$isPressed){
-                                        HighlightView()
+                                        HighlightView(newsID: self.newsID!).environmentObject(self.newsManager)
                                     }
                                 }
                                 

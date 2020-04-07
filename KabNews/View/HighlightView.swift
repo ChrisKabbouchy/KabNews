@@ -12,13 +12,22 @@ import GoogleSignIn
 
 struct HighlightView: View {
     
+    @EnvironmentObject var newsItem : NewsManager
+    @State var newsID : Int
+    
     var body: some View {
-        GeometryReader{ geo in
+        
+        let currentNewsItem = newsItem.news[newsID]
+        let dateString = currentNewsItem.date
+        let date = dateString?.replacingOccurrences(of: "T", with: " ")
+        let finalDate = date?.replacingOccurrences(of: "Z", with: " ")
+        
+        return  GeometryReader{ geo in
             ZStack{
                 Color("baseColor")
                     .edgesIgnoringSafeArea(.all)
                 VStack{
-                    Image("christian")
+                    Image(uiImage: currentNewsItem.image ?? UIImage(systemName: "photo")!)
                         .resizable()
                         .edgesIgnoringSafeArea(.all).frame( height: geo.size.height/3,alignment: .top)
                     ZStack (alignment: .topLeading) {
@@ -26,34 +35,35 @@ struct HighlightView: View {
                             .edgesIgnoringSafeArea(.all).frame( height: geo.size.height/1.5,alignment: .top)
                         VStack(alignment:.center) {
                             VStack (alignment: .leading) {
-                                Text("Source")
+                                Text("\(currentNewsItem.sourceName ?? "No Title")")
                                     .font(.largeTitle)
                                     .fontWeight(.bold)
-                                Text("author")
+                                Text(currentNewsItem.author ?? "No Author")
                                     .font(.headline)
-                                .fontWeight(.bold)
-                                Text("Date")
+                                    .fontWeight(.bold)
+                                Text(finalDate ?? "No Date")
                                     .font(.caption)
                                     .fontWeight(.bold)
-                                Divider()
-                                    .padding()
-                                Text("title")
-                                .font(.caption)
-                                .fontWeight(.bold)
-                                Text("the news")
-                                .font(.caption)
-                                .fontWeight(.bold)
+                                Divider()   
+                                Text("\(currentNewsItem.title ?? "No Title")")
+                                    .font(.title)
+                                    .fontWeight(.bold)
+                                    .padding(.bottom)
+                                Text(currentNewsItem.description ?? "No Discription")
+                                    .font(.body)
+                                    .fontWeight(.bold)
+                                    .padding(.bottom)
                                 Spacer()
                                 
                             }.padding()
                             Button(action: {}){
                                 Text("Read full article")
-                                .bold()
-                                .padding()
-                                .frame(width: geo.size.width - 100,height: 50 ,alignment: .center)
-                                .foregroundColor(Color.white)
-                                .background(Color("secondColor"))
-                                .cornerRadius(10)
+                                    .bold()
+                                    .padding()
+                                    .frame(width: geo.size.width - 100,height: 50 ,alignment: .center)
+                                    .foregroundColor(Color.white)
+                                    .background(Color("secondColor"))
+                                    .cornerRadius(10)
                             }
                         }
                         
@@ -67,6 +77,6 @@ struct HighlightView: View {
 }
 struct HighlightView_Previews: PreviewProvider {
     static var previews: some View {
-        HighlightView().environment(\.colorScheme, .dark)
+        HighlightView(newsID: 5).environment(\.colorScheme, .dark)
     }
 }
