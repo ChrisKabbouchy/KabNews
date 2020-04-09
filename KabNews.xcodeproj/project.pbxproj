@@ -22,6 +22,7 @@
 		4ECAE56824278A0900BC32AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ECAE56724278A0900BC32AA /* Assets.xcassets */; };
 		4ECAE56B24278A0900BC32AA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4ECAE56A24278A0900BC32AA /* Preview Assets.xcassets */; };
 		4ECAE56E24278A0900BC32AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ECAE56C24278A0900BC32AA /* LaunchScreen.storyboard */; };
+		4EF82500243F66420008954D /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF824FF243F66420008954D /* SettingView.swift */; };
 		4EF91D6D24379B0600EC53C6 /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EF91D6C24379B0600EC53C6 /* LogInView.swift */; };
 		C0BADF2815131DC9D30CC70D /* Pods_KabNews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A5926DB0BB99D7A751401DD /* Pods_KabNews.framework */; };
 /* End PBXBuildFile section */
@@ -45,6 +46,7 @@
 		4ECAE56A24278A0900BC32AA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4ECAE56D24278A0900BC32AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4ECAE56F24278A0900BC32AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4EF824FF243F66420008954D /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		4EF91D6C24379B0600EC53C6 /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		8A5926DB0BB99D7A751401DD /* Pods_KabNews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KabNews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A5BF9B1B1FC40A1BE9C086F /* Pods-KabNews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KabNews.release.xcconfig"; path = "Target Support Files/Pods-KabNews/Pods-KabNews.release.xcconfig"; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				4EB5500C2427C9AF001BDC2D /* MainView.swift */,
 				4EF91D6C24379B0600EC53C6 /* LogInView.swift */,
 				4EA988CE243A357000863D7F /* SignUpView.swift */,
+				4EF824FF243F66420008954D /* SettingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				4EB5500F2427CB71001BDC2D /* HighlightView.swift in Sources */,
 				4EA988CF243A357000863D7F /* SignUpView.swift in Sources */,
 				4ECAE56424278A0600BC32AA /* SceneDelegate.swift in Sources */,
+				4EF82500243F66420008954D /* SettingView.swift in Sources */,
 				4E55BC58243398B00062FF40 /* ImageLoader.swift in Sources */,
 				4E70AD31242CF9BD007ACD09 /* NewsManager.swift in Sources */,
 				4ECAE56624278A0600BC32AA /* TopView.swift in Sources */,

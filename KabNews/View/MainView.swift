@@ -15,8 +15,8 @@ struct MainView: View {
     @State var newsID : Int?
     
     var body: some View {
-        ZStack{
-            GeometryReader{ geo in
+        GeometryReader{ geo in
+            ZStack(alignment: .top){
                 Color("baseColor").edgesIgnoringSafeArea(.all)
                 VStack(alignment: .leading){
                     TopView(buttonPressed: 0)

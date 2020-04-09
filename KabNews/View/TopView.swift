@@ -12,8 +12,12 @@ struct TopView: View {
     
     @State var buttonPressed = 0
     @State var isPressed = false
+    @State var searchIsShowing =  false
+    @State var searchField = ""
+    @State var gearIsPressed = false
     
     var body: some View {
+        
         VStack{
             HStack{
                 Image("christian")
@@ -28,17 +32,34 @@ struct TopView: View {
                         .font(.footnote)
                 }
                 Spacer()
-                Button (action: {}) {
+                Button (action: {self.searchIsShowing.toggle()}) {
                     Image(systemName: "magnifyingglass").foregroundColor(Color("textColor"))
                 }.padding(.horizontal)
-                Button(action: {}){
+                Button(action: {self.gearIsPressed.toggle()}){
                     Image(systemName: "gear").foregroundColor(Color("textColor"))
+                }.sheet(isPresented: $gearIsPressed){
+                    SettingView()
                 }
             }.padding()
+            if self.searchIsShowing {
+                    HStack {
+                        TextField("Search for News", text: self.$searchField)
+                            .padding()
+                        Button(action: {}){
+                            Image(systemName: "magnifyingglass")
+                                .foregroundColor(Color("textColor"))
+                                .padding(.horizontal)
+                        }
+                    }
+                    .frame(width: UIScreen.main.bounds.width - 80,height: 40 )
+                    .overlay(RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color("secondColor"), lineWidth: 4))
+                    .padding(.bottom)
+            }
             
             HStack{
                 Button (action: {self.buttonPressed = 1 ; self.isPressed=true} ) {
-                    if buttonPressed == 1 {
+                    if self.buttonPressed == 1 {
                         Text("Tech")
                             .fontWeight(.heavy)
                             .foregroundColor(Color("secondColor"))
@@ -51,7 +72,7 @@ struct TopView: View {
                 }
                 Spacer()
                 Button (action: {self.buttonPressed = 2}) {
-                    if buttonPressed == 2 {
+                    if self.buttonPressed == 2 {
                         Text("Business")
                             .fontWeight(.heavy)
                             .foregroundColor(Color("secondColor"))
@@ -64,7 +85,7 @@ struct TopView: View {
                 }
                 Spacer()
                 Button (action: {self.buttonPressed = 3}) {
-                    if buttonPressed == 3 {
+                    if self.buttonPressed == 3 {
                         Text("Politics")
                             .fontWeight(.heavy)
                             .foregroundColor(Color("secondColor"))
@@ -77,7 +98,7 @@ struct TopView: View {
                 }
                 Spacer()
                 Button (action: {self.buttonPressed = 4}) {
-                    if buttonPressed == 4 {
+                    if self.buttonPressed == 4 {
                         Text("World")
                             .fontWeight(.heavy)
                             .foregroundColor(Color("secondColor"))
@@ -90,7 +111,7 @@ struct TopView: View {
                 }
                 Spacer()
                 Button (action: {self.buttonPressed = 5}) {
-                    if buttonPressed == 5 {
+                    if self.buttonPressed == 5 {
                         Text("Design")
                             .fontWeight(.heavy)
                             .foregroundColor(Color("secondColor"))
