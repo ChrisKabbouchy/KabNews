@@ -11,57 +11,30 @@ import SwiftUI
 struct MainView: View {
     
     @EnvironmentObject var newsManager : NewsManager
-    @State var isPressed = false
-    @State var newsID : Int?
     
     var body: some View {
-        GeometryReader{ geo in
-            ZStack(alignment: .top){
-                Color("baseColor").edgesIgnoringSafeArea(.all)
+        ZStack(alignment: .top){
+            Color("baseColor").edgesIgnoringSafeArea(.all)
+            ScrollView{
                 VStack(alignment: .leading){
                     TopView(buttonPressed: 0)
-                        .padding([.bottom])
+                    //.padding([.bottom])
                     Text("Hot Topics")
                         .font(.system(.largeTitle, design: .rounded))
                         .bold()
                         .padding([.horizontal])
                     if self.newsManager.news.count>0{
-                        ScrollView(.horizontal, showsIndicators: false){
-                            HStack{
-                                ForEach(self.newsManager.news) { newsItem in
-                                    Button( action: {self.isPressed = true;self.newsID = newsItem.id}){
-                                        Text("-\(newsItem.title!)")
-                                            .bold()
-                                            .lineLimit(5)
-                                            .foregroundColor(Color.white)
-                                            .background(Rectangle()
-                                                .frame( width: geo.size.width, height:  geo.size.height/5.5,alignment: .bottom)
-                                                .foregroundColor(Color.black)
-                                                .blur(radius: 2)
-                                                .opacity(0.3))
-                                            .font(.headline)
-                                            .padding()
-                                            .frame(width: geo.size.width/2, height: geo.size.height/3, alignment: .bottom)
-                                            .background(
-                                                imageView(withURL: newsItem.imageUrl, currentNewsItem: self.newsManager.news[newsItem.id!])
-                                        )
-                                            .cornerRadius(40)
-                                            .padding([.leading])
-                                    }
-                                    .sheet(isPresented: self.$isPressed){
-                                        HighlightView(newsID: self.newsID!).environmentObject(self.newsManager)
-                                    }
-                                }
-                                
-                            }
-                        }
-                        
+                        HotTopicsView()
+                            .environmentObject(self.newsManager)
+                        Text("Latest News")
+                            .font(.system(.largeTitle, design: .rounded))
+                            .bold()
+                            .padding([.horizontal])
+                        LatestNewsView().environmentObject(self.newsManager)
                     }
                 }
             }
             
-        }.onAppear {
-            self.newsManager.fetchNewsData()
         }
     }
 }
@@ -93,20 +66,20 @@ struct imageView: View {
             return Image(uiImage: newsManager.image!)
                 .renderingMode(.original)
                 .resizable()
-                .aspectRatio(contentMode: .fill)
         }
         else if imageLoader.dataIsValid == true && newsManager.image == nil{
             newsManager.image = UIImage(data: imageLoader.data!)
+            if newsManager.image == nil{
+                newsManager.image = UIImage(systemName: "exclamationmark.icloud")
+            }
             return Image(uiImage: newsManager.image!)
                 .renderingMode(.original)
                 .resizable()
-                .aspectRatio(contentMode: .fill)
         }
         else{
             return Image(uiImage: UIImage(systemName: "photo.fill")!)
                 .renderingMode(.original)
                 .resizable()
-                .aspectRatio(contentMode: .fill)
         }
         
     }

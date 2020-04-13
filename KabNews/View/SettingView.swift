@@ -17,15 +17,18 @@ struct SettingView: View {
                 ZStack(alignment:.leading){
                     Color("baseColor")
                     VStack(alignment:.leading) {
-                        Text("Settings")
-                            .font(.largeTitle)
-                            .bold()
-                            .padding()
-                        Text("Settings")
-                            .font(.largeTitle)
-                            .bold()
-                            .padding()
-                    }
+                        Form{
+                            Text("Settings")
+                                    .font(.largeTitle)
+                                    .bold()
+                                    .padding()
+                                Text("Settings")
+                                    .font(.largeTitle)
+                                    .bold()
+                                    .padding()
+                            }
+                        }
+                        
                 }
                     Button(action: {}){
                         Text("LogOut")

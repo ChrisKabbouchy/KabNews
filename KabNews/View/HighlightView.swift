@@ -13,11 +13,12 @@ import GoogleSignIn
 struct HighlightView: View {
     
     @EnvironmentObject var newsItem : NewsManager
+    var newsCategory : [NewsModel]
     @State var newsID : Int
     
     var body: some View {
         
-        let currentNewsItem = newsItem.news[newsID]
+        let currentNewsItem = newsCategory[newsID]
         let dateString = currentNewsItem.date
         let date = dateString?.replacingOccurrences(of: "T", with: " ")
         let finalDate = date?.replacingOccurrences(of: "Z", with: " ")
@@ -75,8 +76,8 @@ struct HighlightView: View {
         }
     }
 }
-struct HighlightView_Previews: PreviewProvider {
-    static var previews: some View {
-        HighlightView(newsID: 5).environment(\.colorScheme, .dark)
-    }
-}
+//struct HighlightView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        HighlightView(newsID: 5).environment(\.colorScheme, .dark)
+//    }
+//}

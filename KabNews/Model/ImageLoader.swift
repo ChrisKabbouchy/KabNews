@@ -21,7 +21,7 @@ class ImageLoader: ObservableObject {
             DispatchQueue.main.async {
                 self.dataIsValid = true
                 self.data = data
-                print("load ")
+                print("load")
             }
         }
         task.resume()
