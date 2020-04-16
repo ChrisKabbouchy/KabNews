@@ -51,7 +51,7 @@ struct LogInView: View {
                             print(authResult?.user.displayName ?? " " )
                             UserDefaults.standard.set(authResult?.user.displayName, forKey: "user-name")
                             UserDefaults.standard.set(true, forKey: "logged-in")
-                             NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
+                            NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
                             self.showingAlert.toggle()
                         }
                         
@@ -71,7 +71,7 @@ struct LogInView: View {
                         .frame(width: 150, height: 50)
                     
                     VStack{
-                        Text("Don't have an acount yet?")
+                        Text("Don't have an account yet?")
                             .font(.headline)
                             .bold()
                             .padding(.bottom)
@@ -79,9 +79,9 @@ struct LogInView: View {
                             Text("SignUp")
                                 .bold()
                                 .foregroundColor(Color.white)
-                            .padding()
+                                .padding()
                                 .background(Color("secondColor"))
-                            .cornerRadius(10)
+                                .cornerRadius(10)
                         }.sheet(isPresented: self.$isPresented) {
                             SignUpView()
                         }

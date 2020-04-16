@@ -15,6 +15,7 @@ struct HighlightView: View {
     @EnvironmentObject var newsItem : NewsManager
     var newsCategory : [NewsModel]
     @State var newsID : Int
+    @State var isPresented = false
     
     var body: some View {
         
@@ -57,7 +58,7 @@ struct HighlightView: View {
                                 Spacer()
                                 
                             }.padding()
-                            Button(action: {}){
+                            Button(action: {self.isPresented.toggle()}){
                                 Text("Read full article")
                                     .bold()
                                     .padding()
@@ -65,6 +66,9 @@ struct HighlightView: View {
                                     .foregroundColor(Color.white)
                                     .background(Color("secondColor"))
                                     .cornerRadius(10)
+                            }
+                            .sheet(isPresented: self.$isPresented) {
+                                WebView(url: currentNewsItem.newsUrl)
                             }
                         }
                         

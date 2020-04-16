@@ -26,7 +26,7 @@ struct LatestNewsView: View {
                             .padding(.leading)
                         Text("-\(newsItem.title!)")
                             .bold()
-                            .foregroundColor(Color.white)
+                            .foregroundColor(Color("textColor"))
                             .padding(.trailing)
                         
                     }

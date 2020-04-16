@@ -9,20 +9,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var newsManager : NewsManager
     @State var isLoggedIn : Bool = UserDefaults.standard.bool(forKey: "logged-in")
     var body: some View {
         VStack{
             
             if isLoggedIn{
                 
-                MainView()
+                MainView().environmentObject(newsManager)
             }
             else{
                 
                 LogInView()
             }
             
-        }.animation(.spring())
+        }
             .onAppear(){
                 NotificationCenter.default.addObserver(forName: NSNotification.Name("statusChange"), object: nil, queue: .main) { (_) in
                     self.isLoggedIn = UserDefaults.standard.bool(forKey: "logged-in")

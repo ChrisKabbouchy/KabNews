@@ -10,11 +10,13 @@ import SwiftUI
 
 struct TopView: View {
     
+    @EnvironmentObject var newsManager : NewsManager
     @State var buttonPressed = 0
     @State var isPressed = false
     @State var searchIsShowing =  false
     @State var searchField = ""
     @State var gearIsPressed = false
+    @State var userGivenName = UserDefaults.standard.string(forKey: "user-name")
     
     var body: some View {
         
@@ -26,7 +28,7 @@ struct TopView: View {
                     .clipShape(Circle())
                     .aspectRatio(contentMode: .fit)
                 VStack(alignment: .leading){
-                    Text("Christian kabbouchy")
+                    Text(userGivenName ?? "No Name")
                         .fontWeight(.heavy)
                     Text("Premium User")
                         .font(.footnote)
@@ -58,7 +60,11 @@ struct TopView: View {
             }
             ScrollView(.horizontal, showsIndicators: false){
                 HStack{
-                    Button (action: {self.buttonPressed = 1 ; self.isPressed=true} ) {
+                    Button (action: {
+                        self.buttonPressed = 1 ; self.isPressed=true
+                        self.newsManager.fetchLatestNews(with: "technology")
+                        
+                    } ) {
                         if self.buttonPressed == 1 {
                             Text("Tech")
                                 .fontWeight(.heavy)
@@ -66,12 +72,16 @@ struct TopView: View {
                         }
                         else{
                             Text("Tech")
-                               .fontWeight(.heavy)
+                                .fontWeight(.heavy)
                                 .foregroundColor(Color("textColor"))
                         }
                     }
                     Spacer()
-                    Button (action: {self.buttonPressed = 2}) {
+                    Button (action: {
+                        self.buttonPressed = 2
+                        self.newsManager.fetchLatestNews(with: "business")
+                        
+                    }) {
                         if self.buttonPressed == 2 {
                             Text("Business")
                                 .fontWeight(.heavy)
@@ -79,12 +89,15 @@ struct TopView: View {
                         }
                         else{
                             Text("Business")
-                               .fontWeight(.heavy)
+                                .fontWeight(.heavy)
                                 .foregroundColor(Color("textColor"))
                         }
                     }
                     Spacer()
-                    Button (action: {self.buttonPressed = 3}) {
+                    Button (action: {
+                        self.buttonPressed = 3
+                        self.newsManager.fetchLatestNews(with: "entertainment")
+                    }) {
                         if self.buttonPressed == 3 {
                             Text("Entertainment")
                                 .fontWeight(.heavy)
@@ -97,7 +110,10 @@ struct TopView: View {
                         }
                     }
                     Spacer()
-                    Button (action: {self.buttonPressed = 4}) {
+                    Button (action: {
+                        self.buttonPressed = 4
+                        self.newsManager.fetchLatestNews(with: "health")
+                    }) {
                         if self.buttonPressed == 4 {
                             Text("Health")
                                 .fontWeight(.heavy)
@@ -109,7 +125,10 @@ struct TopView: View {
                                 .foregroundColor(Color("textColor"))
                         }
                     }
-                    Button (action: {self.buttonPressed = 6}) {
+                    Button (action: {
+                        self.buttonPressed = 6
+                        self.newsManager.fetchLatestNews(with: "science")
+                    }) {
                         if self.buttonPressed == 6 {
                             Text("Science")
                                 .fontWeight(.heavy)
@@ -122,7 +141,10 @@ struct TopView: View {
                         }
                     }
                     Spacer()
-                    Button (action: {self.buttonPressed = 5}) {
+                    Button (action: {
+                        self.buttonPressed = 5
+                        self.newsManager.fetchLatestNews(with: "sports")
+                    }) {
                         if self.buttonPressed == 5 {
                             Text("Sports")
                                 .fontWeight(.heavy)

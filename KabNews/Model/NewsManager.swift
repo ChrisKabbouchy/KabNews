@@ -16,7 +16,9 @@ class NewsManager : ObservableObject{
     private let apiKey = "fcf0aefb55a24e739bbb8ea0b5edbad1"
     
     func fetchLatestNews(with category:String){
-        
+        if !latestNews.isEmpty {
+            latestNews.removeAll()
+        }
         let finalUrl = "\(baseUrl)&category=\(category)&apiKey=\(apiKey)"
         print(finalUrl)
         let url = URL(string: finalUrl)
