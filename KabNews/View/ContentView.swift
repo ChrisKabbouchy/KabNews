@@ -13,21 +13,19 @@ struct ContentView: View {
     @State var isLoggedIn : Bool = UserDefaults.standard.bool(forKey: "logged-in")
     var body: some View {
         VStack{
-            
             if isLoggedIn{
-                
-                MainView().environmentObject(newsManager)
+                AnyView(MainView().environmentObject(newsManager))
             }
             else{
-                
-                LogInView()
+                AnyView(LogInView())
             }
-            
-        }
-            .onAppear(){
-                NotificationCenter.default.addObserver(forName: NSNotification.Name("statusChange"), object: nil, queue: .main) { (_) in
+        }.onAppear(){
+            NotificationCenter.default.addObserver(forName: NSNotification.Name("statusChange"), object: nil, queue: .main) { (_) in
+                DispatchQueue.main.async {
                     self.isLoggedIn = UserDefaults.standard.bool(forKey: "logged-in")
                 }
+                
+            }
         }
     }
 }

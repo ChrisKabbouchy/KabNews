@@ -15,6 +15,7 @@ struct LogInView: View {
     @State var email :  String = ""
     @State var password : String = ""
     @State var isPresented : Bool = false
+    @State var alert : Alert?
     @State var showingAlert = false
     
     var body: some View {
@@ -46,13 +47,14 @@ struct LogInView: View {
                         Auth.auth().signIn(withEmail: self.email, password: self.password) { authResult, error in
                             if error != nil{
                                 print(error!)
+                                self.alert = Alert(title: Text("Sign-in failed"), message: Text("error: \(error!.localizedDescription)"), dismissButton: .cancel())
+                                self.showingAlert.toggle()
                                 return
                             }
                             print(authResult?.user.displayName ?? " " )
                             UserDefaults.standard.set(authResult?.user.displayName, forKey: "user-name")
                             UserDefaults.standard.set(true, forKey: "logged-in")
                             NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
-                            self.showingAlert.toggle()
                         }
                         
                     }
@@ -65,7 +67,7 @@ struct LogInView: View {
                             .background(Color("secondColor"))
                             .cornerRadius(10)
                     }.alert(isPresented: self.$showingAlert){
-                        Alert(title: Text("hello"), message: Text("hello"),dismissButton: .default(Text("ok")))
+                        self.alert!
                     }
                     GoogleSignView()
                         .frame(width: 150, height: 50)

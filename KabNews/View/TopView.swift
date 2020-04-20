@@ -19,8 +19,8 @@ struct TopView: View {
     @State var userGivenName = UserDefaults.standard.string(forKey: "user-name")
     
     var body: some View {
-        
-        VStack{
+        NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
+        return VStack{
             HStack{
                 Image("christian")
                     .resizable()

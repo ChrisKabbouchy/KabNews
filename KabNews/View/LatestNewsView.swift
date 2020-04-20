@@ -22,14 +22,13 @@ struct LatestNewsView: View {
                     Button( action: {self.isPressed.toggle();self.newsID = newsItem.id}){
                         imageView(withURL: newsItem.imageUrl, currentNewsItem: self.newsManager.latestNews[newsItem.id!])
                             .frame(width: UIScreen.main.bounds.width/3, height: UIScreen.main.bounds.height/6)
-                            .aspectRatio(contentMode: .fill)
+                            .aspectRatio(contentMode: .fit)
                             .padding(.leading)
                         Text("-\(newsItem.title!)")
                             .bold()
-                            .foregroundColor(Color("textColor"))
                             .padding(.trailing)
                         
-                    }
+                    }.buttonStyle(PlainButtonStyle())
                     .sheet(isPresented: self.$isPressed){
                         HighlightView(newsCategory: self.newsManager.latestNews, newsID: self.newsID!).environmentObject(self.newsManager)
                     }

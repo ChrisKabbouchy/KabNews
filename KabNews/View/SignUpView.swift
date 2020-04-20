@@ -14,6 +14,8 @@ struct SignUpView: View {
     @State var email :  String = ""
     @State var password : String = ""
     @State var name : String = ""
+    @State var alert : Alert?
+    @State var showingAlert = false
     
     var body: some View {
         
@@ -57,6 +59,8 @@ struct SignUpView: View {
                         Auth.auth().createUser(withEmail: self.email, password: self.password) { authResult, error in
                             if error != nil{
                                 print(error!)
+                                self.alert = Alert(title: Text("Sign-in failed"), message: Text("error: \(error!.localizedDescription)"), dismissButton: .cancel())
+                                self.showingAlert.toggle()
                                 return
                             }
                             print(authResult?.user.email ?? "no name" )
@@ -73,6 +77,8 @@ struct SignUpView: View {
                             .foregroundColor(Color.white)
                             .background(Color("secondColor"))
                             .cornerRadius(10)
+                    }.alert(isPresented: self.$showingAlert){
+                        self.alert!
                     }
                 }
             }
