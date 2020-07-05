@@ -11,7 +11,8 @@ import Firebase
 
 struct SettingView: View {
     @Environment(\.presentationMode) var presentationMode
-    @State var selectedCountry = 0
+    @EnvironmentObject var newsManager : NewsManager
+    @State var selectedCountry = UserDefaults.standard.integer(forKey: "country-selected")
     @State var name : String = ""
     @State var countries = ["🇦🇷Argentina","🇦🇹Austria","🇦🇺Australia","🇧🇪Belgium","🇧🇷Brazil","🇧🇬Bulgaria","🇨🇦Canada","🇨🇳China"
         ,"🇨🇴Colombia","🇨🇺Cuba","🇨🇿Czech Republic","🇪🇬Egypt","🇫🇷France","🇩🇪Germany","🇬🇷Greece","🇭🇰Hong Kong","🇭🇺Hungary","🇮🇳India","🇮🇩Indonesia","🇮🇪Ireland","🇮🇹Italy","🇯🇵Japan","🇱🇻Latvia"]
@@ -38,7 +39,12 @@ struct SettingView: View {
                         .navigationBarTitle("Settings")
                     }
                     
-                    Button(action: {}){
+                    Button(action: {
+                        UserDefaults.standard.set(self.selectedCountry, forKey: "country-selected")
+                        self.newsManager.fetchNewsData()
+                        self.newsManager.fetchLatestNews(with: "technology", isSearchResult: false)
+                        self.presentationMode.wrappedValue.dismiss()
+                    }){
                         Text("Save")
                             .bold()
                             .padding()
@@ -74,8 +80,8 @@ struct SettingView: View {
     }
 }
 
-//struct SettingView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SettingView().environment(\.colorScheme, .dark)
-//    }
-//}
+struct SettingView_Previews: PreviewProvider {
+    static var previews: some View {
+        SettingView().environment(\.colorScheme, .dark)
+    }
+}

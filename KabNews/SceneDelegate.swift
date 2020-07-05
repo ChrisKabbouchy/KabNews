@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Create the SwiftUI view that provides the window contents.
         let newsManager = NewsManager()
         newsManager.fetchNewsData()
-        newsManager.fetchLatestNews(with: "technology")
+        newsManager.fetchLatestNews(with: "technology", isSearchResult: false)
         let contentView = ContentView()
 
         // Use a UIHostingController as window root view controller.

@@ -12,15 +12,60 @@ class NewsManager : ObservableObject{
     
     @Published var news = [NewsModel]()
     @Published var latestNews = [NewsModel]()
-    private let baseUrl = "https://newsapi.org/v2/top-headlines?country=us"
+    
+    var country : String {
+        let selectedCountry = UserDefaults.standard.integer(forKey: "country-selected")
+        switch selectedCountry {
+        case 0:
+            return "ar"
+        case 1 :
+            return "au"
+        case 2 :
+            return "at"
+        case 3 :
+            return "be"
+        case 4 :
+            return "br"
+        case 5 :
+            return "bg"
+        case 6 :
+            return "ca"
+        case 7 :
+            return "cn"
+        case 8 :
+            return "co"
+        case 9 :
+            return "cu"
+        case 10 :
+            return "cz"
+        case 11 :
+            return "eg"
+        case 12 :
+            return "fr"
+        case 13 :
+            return "de"
+        case 14 :
+            return "gr"
+        default:
+            return "us"
+        }
+    }
+    private let baseUrl = "https://newsapi.org/v2/top-headlines?country="
+    private let searchUrl = "https://newsapi.org/v2/everything?q="
     private let apiKey = "fcf0aefb55a24e739bbb8ea0b5edbad1"
     
-    func fetchLatestNews(with category:String){
+    func fetchLatestNews(with category:String , isSearchResult:Bool){
         if !latestNews.isEmpty {
             latestNews.removeAll()
         }
-        let finalUrl = "\(baseUrl)&category=\(category)&apiKey=\(apiKey)"
-        print(finalUrl)
+        var finalUrl = ""
+        if !isSearchResult {
+            finalUrl = "\(baseUrl)\(country)&category=\(category)&apiKey=\(apiKey)"
+            print(finalUrl)
+        }
+        else{
+            finalUrl = "\(searchUrl)\(category)&apiKey=\(apiKey)"
+        }
         let url = URL(string: finalUrl)
         
         var request = URLRequest(url: url!)
@@ -28,7 +73,7 @@ class NewsManager : ObservableObject{
         
         let session = URLSession(configuration: .default)
         
-        let task =  session.dataTask(with: request) { (data, responce, error) in
+        let task =  session.dataTask(with: request) { (data, response, error) in
             if error != nil{
                 return
             }
@@ -56,11 +101,10 @@ class NewsManager : ObservableObject{
     
     
     func fetchNewsData () {
-        
-        
-        //&category=politics"
-        
-        let finalUrl = "\(baseUrl)&apiKey=\(apiKey)"
+        if !news.isEmpty {
+            news.removeAll()
+        }
+        let finalUrl = "\(baseUrl)\(country)&apiKey=\(apiKey)"
         print(finalUrl)
         
         let url = URL(string: finalUrl)
@@ -70,7 +114,7 @@ class NewsManager : ObservableObject{
         
         let session = URLSession(configuration: .default)
         
-        let task =  session.dataTask(with: request) { (data, responce, error) in
+        let task =  session.dataTask(with: request) { (data, response, error) in
             if error != nil{
                 return
             }

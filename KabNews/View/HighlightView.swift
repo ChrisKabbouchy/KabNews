@@ -34,7 +34,8 @@ struct HighlightView: View {
                         .edgesIgnoringSafeArea(.all).frame( height: geo.size.height/3,alignment: .top)
                     ZStack (alignment: .topLeading) {
                         Color("baseColor")
-                            .edgesIgnoringSafeArea(.all).frame( height: geo.size.height/1.5,alignment: .top)
+                            .edgesIgnoringSafeArea(.all)
+                            .frame( height: geo.size.height/1.5,alignment: .top)
                         VStack(alignment:.center) {
                             VStack (alignment: .leading) {
                                 Text("\(currentNewsItem.sourceName ?? "No Title")")

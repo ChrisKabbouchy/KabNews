@@ -40,14 +40,18 @@ struct TopView: View {
                 Button(action: {self.gearIsPressed.toggle()}){
                     Image(systemName: "gear").foregroundColor(Color("textColor"))
                 }.sheet(isPresented: $gearIsPressed){
-                    SettingView()
+                    SettingView().environmentObject(self.newsManager)
                 }
             }.padding([.horizontal])
             if self.searchIsShowing {
                 HStack {
                     TextField("Search for News", text: self.$searchField)
                         .padding()
-                    Button(action: {}){
+                    Button(action: {
+                        if self.searchField != "" {
+                            self.newsManager.fetchLatestNews(with: self.searchField, isSearchResult: true)
+                        }
+                    }){
                         Image(systemName: "magnifyingglass")
                             .foregroundColor(Color("textColor"))
                             .padding(.horizontal)
@@ -62,7 +66,7 @@ struct TopView: View {
                 HStack{
                     Button (action: {
                         self.buttonPressed = 1 ; self.isPressed=true
-                        self.newsManager.fetchLatestNews(with: "technology")
+                        self.newsManager.fetchLatestNews(with: "technology", isSearchResult: false)
                         
                     } ) {
                         if self.buttonPressed == 1 {
@@ -79,7 +83,7 @@ struct TopView: View {
                     Spacer()
                     Button (action: {
                         self.buttonPressed = 2
-                        self.newsManager.fetchLatestNews(with: "business")
+                        self.newsManager.fetchLatestNews(with: "business", isSearchResult: false)
                         
                     }) {
                         if self.buttonPressed == 2 {
@@ -96,7 +100,7 @@ struct TopView: View {
                     Spacer()
                     Button (action: {
                         self.buttonPressed = 3
-                        self.newsManager.fetchLatestNews(with: "entertainment")
+                        self.newsManager.fetchLatestNews(with: "entertainment", isSearchResult: false)
                     }) {
                         if self.buttonPressed == 3 {
                             Text("Entertainment")
@@ -112,7 +116,7 @@ struct TopView: View {
                     Spacer()
                     Button (action: {
                         self.buttonPressed = 4
-                        self.newsManager.fetchLatestNews(with: "health")
+                        self.newsManager.fetchLatestNews(with: "health", isSearchResult: false)
                     }) {
                         if self.buttonPressed == 4 {
                             Text("Health")
@@ -127,7 +131,7 @@ struct TopView: View {
                     }
                     Button (action: {
                         self.buttonPressed = 6
-                        self.newsManager.fetchLatestNews(with: "science")
+                        self.newsManager.fetchLatestNews(with: "science", isSearchResult: false)
                     }) {
                         if self.buttonPressed == 6 {
                             Text("Science")
@@ -143,7 +147,7 @@ struct TopView: View {
                     Spacer()
                     Button (action: {
                         self.buttonPressed = 5
-                        self.newsManager.fetchLatestNews(with: "sports")
+                        self.newsManager.fetchLatestNews(with: "sports", isSearchResult: false)
                     }) {
                         if self.buttonPressed == 5 {
                             Text("Sports")
