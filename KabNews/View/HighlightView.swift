@@ -67,7 +67,7 @@ struct HighlightView: View {
                                     .foregroundColor(Color.white)
                                     .background(Color("secondColor"))
                                     .cornerRadius(10)
-                            }
+                            }.padding(.bottom)
                             .sheet(isPresented: self.$isPresented) {
                                 WebView(url: currentNewsItem.newsUrl)
                             }

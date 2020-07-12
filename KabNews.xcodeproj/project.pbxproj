@@ -91,15 +91,15 @@
 			isa = PBXGroup;
 			children = (
 				4EA988D0243A4D3500863D7F /* ContentView.swift */,
-				4ECAE56524278A0600BC32AA /* TopView.swift */,
 				4EB5500C2427C9AF001BDC2D /* MainView.swift */,
-				4EA3C8842444A6BC00E2A069 /* LatestNewsView.swift */,
-				4E157B5F2440DF3600BE0C81 /* HotTopicsView.swift */,
-				4EB5500E2427CB71001BDC2D /* HighlightView.swift */,
 				4EF91D6C24379B0600EC53C6 /* LogInView.swift */,
 				4EA988CE243A357000863D7F /* SignUpView.swift */,
-				4E0DF5A52448A82A0029EC24 /* WebView.swift */,
+				4ECAE56524278A0600BC32AA /* TopView.swift */,
+				4E157B5F2440DF3600BE0C81 /* HotTopicsView.swift */,
+				4EA3C8842444A6BC00E2A069 /* LatestNewsView.swift */,
+				4EB5500E2427CB71001BDC2D /* HighlightView.swift */,
 				4EF824FF243F66420008954D /* SettingView.swift */,
+				4E0DF5A52448A82A0029EC24 /* WebView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -107,12 +107,19 @@
 		4E70AD2F242CF98C007ACD09 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4E70AD30242CF9BD007ACD09 /* NewsManager.swift */,
-				4E55BC57243398B00062FF40 /* ImageLoader.swift */,
 				4E70AD32242CFE9B007ACD09 /* NewsData.swift */,
 				4E70AD34242D0B57007ACD09 /* NewsModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		4EB3490524BB24F400D9DC25 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4E70AD30242CF9BD007ACD09 /* NewsManager.swift */,
+				4E55BC57243398B00062FF40 /* ImageLoader.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		4ECAE55524278A0600BC32AA = {
@@ -138,8 +145,9 @@
 			children = (
 				4ECAE56124278A0600BC32AA /* AppDelegate.swift */,
 				4ECAE56324278A0600BC32AA /* SceneDelegate.swift */,
-				4E70AD2F242CF98C007ACD09 /* Model */,
+				4EB3490524BB24F400D9DC25 /* ViewModel */,
 				4E70AD2C242CF956007ACD09 /* View */,
+				4E70AD2F242CF98C007ACD09 /* Model */,
 				4ECAE56724278A0900BC32AA /* Assets.xcassets */,
 				4ECAE56C24278A0900BC32AA /* LaunchScreen.storyboard */,
 				4ECAE56F24278A0900BC32AA /* Info.plist */,
