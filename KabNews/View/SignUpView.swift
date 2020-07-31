@@ -54,7 +54,7 @@ struct SignUpView: View {
                     }.frame(width:geo.size.width - 100,height: 50 )
                         .overlay(RoundedRectangle(cornerRadius: 10)
                             .stroke(Color("secondColor"), lineWidth: 4))
-                    
+                    //SIGNUP BUTTON
                     Button(action:{
                         Auth.auth().createUser(withEmail: self.email, password: self.password) { authResult, error in
                             if error != nil{

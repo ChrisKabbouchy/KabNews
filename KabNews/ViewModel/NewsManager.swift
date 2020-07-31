@@ -46,6 +46,82 @@ class NewsManager : ObservableObject{
             return "de"
         case 14 :
             return "gr"
+        case 15 :
+            return "hk"
+        case 16 :
+            return "hu"
+        case 17 :
+            return "in"
+        case 18 :
+            return "id"
+        case 19 :
+            return "ie"
+        case 20 :
+            return "it"
+        case 21 :
+            return "jp"
+        case 22 :
+            return "lv"
+        case 23 :
+            return "lt"
+        case 24 :
+            return "my"
+        case 25 :
+            return "mx"
+        case 26 :
+            return "ma"
+        case 27 :
+            return "nl"
+        case 28 :
+            return "nz"
+        case 29 :
+            return "ng"
+        case 30 :
+            return "no"
+        case 31 :
+            return "ph"
+        case 32 :
+            return "pl"
+        case 33 :
+            return "pt"
+        case 34 :
+            return "ro"
+        case 35 :
+            return "ru"
+        case 36 :
+            return "sa"
+        case 37 :
+            return "rs"
+        case 38 :
+            return "sg"
+        case 39 :
+            return "sk"
+        case 40 :
+            return "si"
+        case 41 :
+            return "za"
+        case 42 :
+            return "kr"
+        case 43 :
+            return "se"
+        case 44 :
+            return "ch"
+        case 45 :
+            return "tw"
+        case 46 :
+            return "th"
+        case 47 :
+            return "tr"
+        case 48 :
+            return "ae"
+        case 49 :
+            return "ua"
+        case 50 :
+            return "gb"
+        case 51 :
+            return "us"
+        case 52 :
+            return "ve"
         default:
             return "us"
         }

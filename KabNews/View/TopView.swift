@@ -22,27 +22,39 @@ struct TopView: View {
         NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
         return VStack{
             HStack{
+                //IMAGE
                 Image("christian")
                     .resizable()
                     .frame(width: 50, height: 50)
                     .clipShape(Circle())
                     .aspectRatio(contentMode: .fit)
                 VStack(alignment: .leading){
+                    //NAME
                     Text(userGivenName ?? "No Name")
                         .fontWeight(.heavy)
                     Text("Premium User")
                         .font(.footnote)
+                }.onAppear(){
+                    NotificationCenter.default.addObserver(forName: NSNotification.Name("statusChange"), object: nil, queue: .main) { (_) in
+                        DispatchQueue.main.async {
+                            self.userGivenName = UserDefaults.standard.string(forKey: "user-name")
+                        }
+                        
+                    }
                 }
                 Spacer()
+                //SEARCH BUTTON
                 Button (action: {self.searchIsShowing.toggle()}) {
                     Image(systemName: "magnifyingglass").foregroundColor(Color("textColor"))
                 }.padding(.horizontal)
+                //SETTINGS BUTTON
                 Button(action: {self.gearIsPressed.toggle()}){
                     Image(systemName: "gear").foregroundColor(Color("textColor"))
                 }.sheet(isPresented: $gearIsPressed){
                     SettingView().environmentObject(self.newsManager)
                 }
             }.padding([.horizontal])
+            //SEARCH FIELD
             if self.searchIsShowing {
                 HStack {
                     TextField("Search for News", text: self.$searchField)
@@ -62,6 +74,7 @@ struct TopView: View {
                 .stroke(Color("secondColor"), lineWidth: 4))
                 .padding(.bottom)
             }
+            //CATEGORY BUTTONS
             ScrollView(.horizontal, showsIndicators: false){
                 HStack{
                     Button (action: {
