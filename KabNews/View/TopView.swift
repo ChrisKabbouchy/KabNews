@@ -23,7 +23,7 @@ struct TopView: View {
         return VStack{
             HStack{
                 //IMAGE
-                Image("christian")
+                Image("appstore")
                     .resizable()
                     .frame(width: 50, height: 50)
                     .clipShape(Circle())
@@ -73,6 +73,7 @@ struct TopView: View {
                 .overlay(RoundedRectangle(cornerRadius: 10)
                 .stroke(Color("secondColor"), lineWidth: 4))
                 .padding(.bottom)
+                .padding(.top)
             }
             //CATEGORY BUTTONS
             ScrollView(.horizontal, showsIndicators: false){

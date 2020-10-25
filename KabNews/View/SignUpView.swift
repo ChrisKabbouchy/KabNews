@@ -22,7 +22,7 @@ struct SignUpView: View {
         GeometryReader{ geo in
             
             ZStack(alignment: .center){
-                
+                //background color
                 Color("baseColor")
                     .edgesIgnoringSafeArea(.all)
                 VStack(alignment: .center, spacing: 20){
@@ -30,15 +30,15 @@ struct SignUpView: View {
                         .font(.title)
                         .bold()
                         .padding()
-                    
+                    //Name text field
                     HStack(alignment: .center){
                         Image(systemName: "person.fill")
                             .padding(.horizontal)
-                        TextField("Enter your email", text: self.$name)
+                        TextField("Enter your name", text: self.$name)
                     }.frame(width:geo.size.width - 100,height: 50 )
                         .overlay(RoundedRectangle(cornerRadius: 10)
                             .stroke(Color("secondColor"), lineWidth: 4))
-                    
+                    //Email text field
                     HStack(){
                         Image(systemName: "envelope.fill")
                             .padding(.horizontal)
@@ -46,7 +46,7 @@ struct SignUpView: View {
                     }.frame(width:geo.size.width - 100,height: 50 )
                         .overlay(RoundedRectangle(cornerRadius: 10)
                             .stroke(Color("secondColor"), lineWidth: 4))
-                    
+                    //Password field
                     HStack{
                         Image(systemName: "lock.fill")
                             .padding(.horizontal)

@@ -39,7 +39,7 @@ struct HotTopicsView : View {
                             .padding([.leading])
                     }
                     .sheet(isPresented: self.$isPressed){
-                        HighlightView(newsCategory: self.newsManager.news, newsID: self.newsID!).environmentObject(self.newsManager)
+                        HighlightView(newsCategory: self.newsManager.news, newsID: self.newsID ?? 0).environmentObject(self.newsManager)
                     }
                 }
                 

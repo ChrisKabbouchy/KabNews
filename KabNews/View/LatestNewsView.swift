@@ -30,7 +30,7 @@ struct LatestNewsView: View {
                         
                     }.buttonStyle(PlainButtonStyle())
                     .sheet(isPresented: self.$isPressed){
-                        HighlightView(newsCategory: self.newsManager.latestNews, newsID: self.newsID!).environmentObject(self.newsManager)
+                        HighlightView(newsCategory: self.newsManager.latestNews, newsID: self.newsID ?? 0).environmentObject(self.newsManager)
                     }
                 }
             }

@@ -65,6 +65,7 @@ struct SettingView: View {
                             try firebaseAuth.signOut()
                             self.presentationMode.wrappedValue.dismiss()
                             UserDefaults.standard.set(false, forKey: "logged-in")
+                            NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
                         } catch let signOutError as NSError {
                             print ("Error signing out: %@", signOutError)
                             UserDefaults.standard.set(true, forKey: "logged-in")
@@ -78,6 +79,7 @@ struct SettingView: View {
                             .foregroundColor(Color.white)
                             .background(Color.red)
                             .cornerRadius(10)
+                            .padding(.bottom)
                     }
                 }
             }

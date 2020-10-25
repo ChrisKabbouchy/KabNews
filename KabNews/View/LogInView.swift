@@ -21,7 +21,7 @@ struct LogInView: View {
     var body: some View {
         GeometryReader{ geo in
             ZStack(alignment: .center){
-                
+                //background color
                 Color("baseColor")
                     .edgesIgnoringSafeArea(.all)
                 VStack(alignment: .center, spacing: 20){
@@ -29,6 +29,7 @@ struct LogInView: View {
                         .font(.title)
                         .bold()
                         .padding()
+                    //email text field
                     HStack(){
                         Image(systemName: "envelope.fill")
                             .padding(.horizontal)
@@ -36,6 +37,7 @@ struct LogInView: View {
                     }.frame(width:geo.size.width - 100,height: 50 )
                         .overlay(RoundedRectangle(cornerRadius: 10)
                             .stroke(Color("secondColor"), lineWidth: 4))
+                    //password text field
                     HStack{
                         Image(systemName: "lock.fill")
                             .padding(.horizontal)
@@ -43,6 +45,7 @@ struct LogInView: View {
                     }.frame(width:geo.size.width - 100,height: 50 )
                         .overlay(RoundedRectangle(cornerRadius: 10)
                             .stroke(Color("secondColor"), lineWidth: 4))
+                    //Login button
                     Button(action:{
                         Auth.auth().signIn(withEmail: self.email, password: self.password) { authResult, error in
                             if error != nil{
@@ -69,6 +72,7 @@ struct LogInView: View {
                     }.alert(isPresented: self.$showingAlert){
                         self.alert!
                     }
+                    //google sign in button
                     GoogleSignView()
                         .frame(width: 150, height: 50)
                     
@@ -77,6 +81,7 @@ struct LogInView: View {
                             .font(.headline)
                             .bold()
                             .padding(.bottom)
+                        //Sign up button
                         Button(action:{self.isPresented.toggle() } ){
                             Text("SignUp")
                                 .bold()
