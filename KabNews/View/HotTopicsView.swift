@@ -17,6 +17,7 @@ struct HotTopicsView : View {
         
         ScrollView(.horizontal, showsIndicators: false){
             HStack{
+                //horizontal Scrollview for the hot topics view
                 ForEach(self.newsManager.news) { newsItem in
                     Button( action: {self.isPressed.toggle();self.newsID = newsItem.id}){
                         Text("-\(newsItem.title!)")
@@ -37,7 +38,7 @@ struct HotTopicsView : View {
                         )
                             .cornerRadius(40)
                             .padding([.leading])
-                    }
+                    }//Open the highlight view when the selected news is pressed
                     .sheet(isPresented: self.$isPressed){
                         HighlightView(newsCategory: self.newsManager.news, newsID: self.newsID ?? 0).environmentObject(self.newsManager)
                     }

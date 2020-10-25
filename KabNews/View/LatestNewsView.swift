@@ -17,6 +17,7 @@ struct LatestNewsView: View {
     var body: some View {
         
         VStack(alignment:.leading){
+            //Vertical scrollview for the latest news
             ForEach(self.newsManager.latestNews) { newsItem in
                 HStack{
                     Button( action: {self.isPressed.toggle();self.newsID = newsItem.id}){
@@ -29,6 +30,7 @@ struct LatestNewsView: View {
                             .padding(.trailing)
                         
                     }.buttonStyle(PlainButtonStyle())
+                    //open the selected news when pressed
                     .sheet(isPresented: self.$isPressed){
                         HighlightView(newsCategory: self.newsManager.latestNews, newsID: self.newsID ?? 0).environmentObject(self.newsManager)
                     }

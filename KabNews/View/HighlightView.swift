@@ -26,9 +26,11 @@ struct HighlightView: View {
         
         return  GeometryReader{ geo in
             ZStack{
+                //Background color
                 Color("baseColor")
                     .edgesIgnoringSafeArea(.all)
                 VStack{
+                    //Image
                     Image(uiImage: currentNewsItem.image ?? UIImage(systemName: "photo")!)
                         .resizable()
                         .edgesIgnoringSafeArea(.all).frame( height: geo.size.height/3,alignment: .top)
@@ -38,6 +40,7 @@ struct HighlightView: View {
                             .frame( height: geo.size.height/1.5,alignment: .top)
                         VStack(alignment:.center) {
                             VStack (alignment: .leading) {
+                                //News details
                                 Text("\(currentNewsItem.sourceName ?? "No Title")")
                                     .font(.largeTitle)
                                     .fontWeight(.bold)
@@ -59,6 +62,7 @@ struct HighlightView: View {
                                 Spacer()
                                 
                             }.padding()
+                            // Read article button
                             Button(action: {self.isPresented.toggle()}){
                                 Text("Read full article")
                                     .bold()
@@ -68,6 +72,7 @@ struct HighlightView: View {
                                     .background(Color("secondColor"))
                                     .cornerRadius(10)
                             }.padding(.bottom)
+                            //Open a web view when button is pressed
                             .sheet(isPresented: self.$isPresented) {
                                 WebView(url: currentNewsItem.newsUrl)
                             }

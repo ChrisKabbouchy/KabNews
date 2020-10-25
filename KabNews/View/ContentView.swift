@@ -12,6 +12,7 @@ struct ContentView: View {
     @EnvironmentObject var newsManager : NewsManager
     @State var isLoggedIn : Bool = UserDefaults.standard.bool(forKey: "logged-in")
     var body: some View {
+        //Check user if logged in and display appropriate UI
         VStack{
             if isLoggedIn{
                 AnyView(MainView().environmentObject(newsManager))
@@ -20,6 +21,7 @@ struct ContentView: View {
                 AnyView(LogInView())
             }
         }.onAppear(){
+            //Notify to update the UI 
             NotificationCenter.default.addObserver(forName: NSNotification.Name("statusChange"), object: nil, queue: .main) { (_) in
                 DispatchQueue.main.async {
                     self.isLoggedIn = UserDefaults.standard.bool(forKey: "logged-in")

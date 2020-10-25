@@ -54,11 +54,13 @@ struct TopView: View {
                     SettingView().environmentObject(self.newsManager)
                 }
             }.padding([.horizontal])
-            //SEARCH FIELD
+            //SEARCH
             if self.searchIsShowing {
                 HStack {
+                    //Search Field
                     TextField("Search for News", text: self.$searchField)
                         .padding()
+                    //Search Button
                     Button(action: {
                         if self.searchField != "" {
                             self.newsManager.fetchLatestNews(with: self.searchField, isSearchResult: true)
@@ -78,6 +80,7 @@ struct TopView: View {
             //CATEGORY BUTTONS
             ScrollView(.horizontal, showsIndicators: false){
                 HStack{
+                    //Technology button
                     Button (action: {
                         self.buttonPressed = 1 ; self.isPressed=true
                         self.newsManager.fetchLatestNews(with: "technology", isSearchResult: false)
@@ -95,6 +98,7 @@ struct TopView: View {
                         }
                     }
                     Spacer()
+                    //business button
                     Button (action: {
                         self.buttonPressed = 2
                         self.newsManager.fetchLatestNews(with: "business", isSearchResult: false)
@@ -112,6 +116,7 @@ struct TopView: View {
                         }
                     }
                     Spacer()
+                    //Entertainment button
                     Button (action: {
                         self.buttonPressed = 3
                         self.newsManager.fetchLatestNews(with: "entertainment", isSearchResult: false)
@@ -128,6 +133,7 @@ struct TopView: View {
                         }
                     }
                     Spacer()
+                    //Health button
                     Button (action: {
                         self.buttonPressed = 4
                         self.newsManager.fetchLatestNews(with: "health", isSearchResult: false)
@@ -143,6 +149,7 @@ struct TopView: View {
                                 .foregroundColor(Color("textColor"))
                         }
                     }
+                    //Science button
                     Button (action: {
                         self.buttonPressed = 6
                         self.newsManager.fetchLatestNews(with: "science", isSearchResult: false)
@@ -159,6 +166,7 @@ struct TopView: View {
                         }
                     }
                     Spacer()
+                    //Sports button
                     Button (action: {
                         self.buttonPressed = 5
                         self.newsManager.fetchLatestNews(with: "sports", isSearchResult: false)
