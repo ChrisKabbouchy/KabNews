@@ -134,17 +134,18 @@ class NewsManager : ObservableObject{
         if !latestNews.isEmpty {
             latestNews.removeAll()
         }
+        let categoryString = category.replacingOccurrences(of: " ", with: "%20")
         var finalUrl = ""
         if !isSearchResult {
-            finalUrl = "\(baseUrl)\(country)&category=\(category)&apiKey=\(apiKey)"
+            finalUrl = "\(baseUrl)\(country)&category=\(categoryString)&apiKey=\(apiKey)"
             print(finalUrl)
         }
         else{
-            finalUrl = "\(searchUrl)\(category)&apiKey=\(apiKey)"
+            finalUrl = "\(searchUrl)\(categoryString)&apiKey=\(apiKey)"
         }
-        let url = URL(string: finalUrl)
+        if let url = URL(string: finalUrl){
         
-        var request = URLRequest(url: url!)
+        var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
         let session = URLSession(configuration: .default)
@@ -172,7 +173,9 @@ class NewsManager : ObservableObject{
         }
         task.resume()
         
-        
+        }else{
+            print(finalUrl)
+        }
     }
     
     
