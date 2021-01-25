@@ -11,7 +11,7 @@ import SwiftUI
 struct HotTopicsView : View {
     @EnvironmentObject var newsManager : NewsManager
     @State var isPressed = false
-    @State var newsID : Int?
+    @State var newsID : Int = 0
     
     var body : some View{
         
@@ -19,7 +19,7 @@ struct HotTopicsView : View {
             HStack{
                 //horizontal Scrollview for the hot topics view
                 ForEach(self.newsManager.news) { newsItem in
-                    Button( action: {self.isPressed.toggle();self.newsID = newsItem.id}){
+                    Button( action: {self.newsID = newsItem.id ?? 0 ; self.isPressed.toggle()}){
                         Text("-\(newsItem.title!)")
                             .bold()
                             .lineLimit(5)
@@ -40,7 +40,7 @@ struct HotTopicsView : View {
                             .padding([.leading])
                     }//Open the highlight view when the selected news is pressed
                     .sheet(isPresented: self.$isPressed){
-                        HighlightView(newsCategory: self.newsManager.news, newsID: self.newsID ?? 0).environmentObject(self.newsManager)
+                        HighlightView(newsCategory: self.newsManager.news, newsID: self.newsID ).environmentObject(self.newsManager)
                     }
                 }
                 

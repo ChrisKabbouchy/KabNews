@@ -12,7 +12,7 @@ struct LatestNewsView: View {
     
     @EnvironmentObject var newsManager : NewsManager
     @State var isPressed = false
-    @State var newsID : Int?
+    @State var newsID : Int = 0
     
     var body: some View {
         
@@ -20,7 +20,7 @@ struct LatestNewsView: View {
             //Vertical scrollview for the latest news
             ForEach(self.newsManager.latestNews) { newsItem in
                 HStack{
-                    Button( action: {self.isPressed.toggle();self.newsID = newsItem.id}){
+                    Button( action: {self.isPressed.toggle();self.newsID = newsItem.id ?? 0}){
                         imageView(withURL: newsItem.imageUrl, currentNewsItem: self.newsManager.latestNews[newsItem.id!])
                             .frame(width: UIScreen.main.bounds.width/3, height: UIScreen.main.bounds.height/6)
                             .aspectRatio(contentMode: .fit)
@@ -32,7 +32,7 @@ struct LatestNewsView: View {
                     }.buttonStyle(PlainButtonStyle())
                     //open the selected news when pressed
                     .sheet(isPresented: self.$isPressed){
-                        HighlightView(newsCategory: self.newsManager.latestNews, newsID: self.newsID ?? 0).environmentObject(self.newsManager)
+                        HighlightView(newsCategory: self.newsManager.latestNews, newsID: self.newsID ).environmentObject(self.newsManager)
                     }
                 }
             }

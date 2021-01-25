@@ -23,6 +23,7 @@ struct HighlightView: View {
         let dateString = currentNewsItem.date
         let date = dateString?.replacingOccurrences(of: "T", with: " ")
         let finalDate = date?.replacingOccurrences(of: "Z", with: " ")
+        let imageLoader = ImageLoader(imageString: currentNewsItem.imageUrl)
         
         return  GeometryReader{ geo in
             ZStack{
@@ -31,7 +32,7 @@ struct HighlightView: View {
                     .edgesIgnoringSafeArea(.all)
                 VStack{
                     //Image
-                    Image(uiImage: currentNewsItem.image ?? UIImage(systemName: "photo")!)
+                    Image(uiImage: imageLoader.image)
                         .resizable()
                         .edgesIgnoringSafeArea(.all).frame( height: geo.size.height/3,alignment: .top)
                     ZStack (alignment: .topLeading) {
