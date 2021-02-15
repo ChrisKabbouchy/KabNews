@@ -25,7 +25,7 @@ struct HighlightView: View {
         let finalDate = date?.replacingOccurrences(of: "Z", with: " ")
         let imageLoader = ImageLoader(imageString: currentNewsItem.imageUrl)
         
-        return  GeometryReader{ geo in
+        return GeometryReader{ geo in
             ZStack{
                 //Background color
                 Color("baseColor")
@@ -42,7 +42,7 @@ struct HighlightView: View {
                         VStack(alignment:.center) {
                             VStack (alignment: .leading) {
                                 //News details
-                                Text("\(currentNewsItem.sourceName ?? "No Title")")
+                                Text("\(currentNewsItem.sourceName ?? "No Source")")
                                     .font(.largeTitle)
                                     .fontWeight(.bold)
                                 Text(currentNewsItem.author ?? "No Author")

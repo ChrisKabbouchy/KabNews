@@ -15,6 +15,7 @@ struct ContentView: View {
         //Check user if logged in and display appropriate UI
         VStack{
             if isLoggedIn{
+                //AnyView(SettingView().environmentObject(newsManager))
                 AnyView(MainView().environmentObject(newsManager))
             }
             else{

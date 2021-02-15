@@ -16,6 +16,7 @@ struct SignUpView: View {
     @State var name : String = ""
     @State var alert : Alert?
     @State var showingAlert = false
+    @State var isPresented : Bool = false
     
     var body: some View {
         
@@ -77,7 +78,10 @@ struct SignUpView: View {
                             .foregroundColor(Color.white)
                             .background(Color("secondColor"))
                             .cornerRadius(10)
-                    }.alert(isPresented: self.$showingAlert){
+                    }.sheet(isPresented: self.$isPresented) {
+                        PreferencesView()
+                    }
+                    .alert(isPresented: self.$showingAlert){
                         self.alert!
                     }
                 }

@@ -15,11 +15,13 @@ struct LogInView: View {
     @State var email :  String = ""
     @State var password : String = ""
     @State var isPresented : Bool = false
+    @State var isPreferencesPresented : Bool = false
     @State var alert : Alert?
     @State var showingAlert = false
     
     var body: some View {
         GeometryReader{ geo in
+            NavigationView{
             ZStack(alignment: .center){
                 //background color
                 Color("baseColor")
@@ -35,17 +37,18 @@ struct LogInView: View {
                             .padding(.horizontal)
                         TextField("Enter your email", text: self.$email)
                     }.frame(width:geo.size.width - 100,height: 50 )
-                        .overlay(RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color("secondColor"), lineWidth: 4))
+                    .overlay(RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color("secondColor"), lineWidth: 4))
                     //password text field
                     HStack{
                         Image(systemName: "lock.fill")
                             .padding(.horizontal)
                         SecureField("Enter your password", text: self.$password)
                     }.frame(width:geo.size.width - 100,height: 50 )
-                        .overlay(RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color("secondColor"), lineWidth: 4))
+                    .overlay(RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color("secondColor"), lineWidth: 4))
                     //Login button
+                    NavigationLink(destination: PreferencesView(), isActive: $isPreferencesPresented){
                     Button(action:{
                         Auth.auth().signIn(withEmail: self.email, password: self.password) { authResult, error in
                             if error != nil{
@@ -57,7 +60,8 @@ struct LogInView: View {
                             print(authResult?.user.displayName ?? " " )
                             UserDefaults.standard.set(authResult?.user.displayName, forKey: "user-name")
                             UserDefaults.standard.set(true, forKey: "logged-in")
-                            NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
+                            isPreferencesPresented.toggle()
+                            //NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
                         }
                         
                     }
@@ -69,8 +73,10 @@ struct LogInView: View {
                             .foregroundColor(Color.white)
                             .background(Color("secondColor"))
                             .cornerRadius(10)
-                    }.alert(isPresented: self.$showingAlert){
+                    }
+                    .alert(isPresented: self.$showingAlert){
                         self.alert!
+                    }
                     }
                     //google sign in button
                     GoogleSignView()
@@ -93,6 +99,7 @@ struct LogInView: View {
                             SignUpView()
                         }
                     }
+                }
                     
                 }
             }
