@@ -19,43 +19,41 @@ struct SignUpView: View {
     @State var isPresented : Bool = false
     
     var body: some View {
-        
-        GeometryReader{ geo in
-            
-            ZStack(alignment: .center){
-                //background color
-                Color("baseColor")
-                    .edgesIgnoringSafeArea(.all)
-                VStack(alignment: .center, spacing: 20){
-                    Text("SignUp")
-                        .font(.title)
-                        .bold()
-                        .padding()
-                    //Name text field
-                    HStack(alignment: .center){
-                        Image(systemName: "person.fill")
-                            .padding(.horizontal)
-                        TextField("Enter your name", text: self.$name)
-                    }.frame(width:geo.size.width - 100,height: 50 )
-                        .overlay(RoundedRectangle(cornerRadius: 10)
+        ZStack(alignment: .center){
+            //background color
+            Color("baseColor")
+                .edgesIgnoringSafeArea(.all)
+            VStack(alignment: .center , spacing: 20){
+                Text("SignUp")
+                    .font(.title)
+                    .bold()
+                    .padding()
+                //Name text field
+                HStack(alignment: .center){
+                    Image(systemName: "person.fill")
+                        .padding(.horizontal)
+                    TextField("Enter your name", text: self.$name)
+                }.frame(width:UIScreen.main.bounds.width - 100,height: 50 )
+                .overlay(RoundedRectangle(cornerRadius: 10)
                             .stroke(Color("secondColor"), lineWidth: 4))
-                    //Email text field
-                    HStack(){
-                        Image(systemName: "envelope.fill")
-                            .padding(.horizontal)
-                        TextField("Enter your email", text: self.$email)
-                    }.frame(width:geo.size.width - 100,height: 50 )
-                        .overlay(RoundedRectangle(cornerRadius: 10)
+                //Email text field
+                HStack(){
+                    Image(systemName: "envelope.fill")
+                        .padding(.horizontal)
+                    TextField("Enter your email", text: self.$email)
+                }.frame(width:UIScreen.main.bounds.width - 100,height: 50 )
+                .overlay(RoundedRectangle(cornerRadius: 10)
                             .stroke(Color("secondColor"), lineWidth: 4))
-                    //Password field
-                    HStack{
-                        Image(systemName: "lock.fill")
-                            .padding(.horizontal)
-                        SecureField("Enter your password", text: self.$password)
-                    }.frame(width:geo.size.width - 100,height: 50 )
-                        .overlay(RoundedRectangle(cornerRadius: 10)
+                //Password field
+                HStack{
+                    Image(systemName: "lock.fill")
+                        .padding(.horizontal)
+                    SecureField("Enter your password", text: self.$password)
+                }.frame(width:UIScreen.main.bounds.width - 100,height: 50 )
+                .overlay(RoundedRectangle(cornerRadius: 10)
                             .stroke(Color("secondColor"), lineWidth: 4))
-                    //SIGNUP BUTTON
+                //SIGNUP BUTTON
+                NavigationLink(destination: PreferencesView(), isActive: $isPresented){
                     Button(action:{
                         Auth.auth().createUser(withEmail: self.email, password: self.password) { authResult, error in
                             if error != nil{
@@ -66,7 +64,7 @@ struct SignUpView: View {
                             }
                             print(authResult?.user.email ?? "no name" )
                             UserDefaults.standard.set(self.name, forKey: "user-name")
-                            UserDefaults.standard.set(true, forKey: "logged-in")
+                            self.isPresented.toggle()
                             NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
                         }
                         
@@ -74,20 +72,17 @@ struct SignUpView: View {
                         Text("SIGNUP")
                             .bold()
                             .padding(.horizontal)
-                            .frame(width: geo.size.width - 100,height: 50 ,alignment: .center)
+                            .frame(width: UIScreen.main.bounds.width - 100,height: 50 ,alignment: .center)
                             .foregroundColor(Color.white)
                             .background(Color("secondColor"))
                             .cornerRadius(10)
-                    }.sheet(isPresented: self.$isPresented) {
-                        PreferencesView()
-                    }
-                    .alert(isPresented: self.$showingAlert){
+                    }.alert(isPresented: self.$showingAlert){
                         self.alert!
                     }
                 }
             }
-            
         }
+        
     }
 }
 

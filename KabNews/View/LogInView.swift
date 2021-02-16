@@ -15,7 +15,8 @@ struct LogInView: View {
     @State var email :  String = ""
     @State var password : String = ""
     @State var isPresented : Bool = false
-    @State var isPreferencesPresented : Bool = false
+    @State var isPreferencesPresented : Bool = UserDefaults.standard.bool(forKey: "googleLogged-in")
+    @State var isSignUpPresented : Bool = false
     @State var alert : Alert?
     @State var showingAlert = false
     
@@ -59,7 +60,7 @@ struct LogInView: View {
                             }
                             print(authResult?.user.displayName ?? " " )
                             UserDefaults.standard.set(authResult?.user.displayName, forKey: "user-name")
-                            UserDefaults.standard.set(true, forKey: "logged-in")
+                            //UserDefaults.standard.set(true, forKey: "logged-in")
                             isPreferencesPresented.toggle()
                             //NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
                         }
@@ -77,7 +78,8 @@ struct LogInView: View {
                     .alert(isPresented: self.$showingAlert){
                         self.alert!
                     }
-                    }
+                    }.navigationBarTitle(Text("Back"), displayMode: .inline)
+                    .navigationBarHidden(true)
                     //google sign in button
                     GoogleSignView()
                         .frame(width: 150, height: 50)
@@ -88,21 +90,30 @@ struct LogInView: View {
                             .bold()
                             .padding(.bottom)
                         //Sign up button
-                        Button(action:{self.isPresented.toggle() } ){
+                        NavigationLink(destination: SignUpView(), isActive: $isSignUpPresented){
+                        Button(action:{self.isSignUpPresented.toggle() } ){
                             Text("SignUp")
                                 .bold()
                                 .foregroundColor(Color.white)
                                 .padding()
                                 .background(Color("secondColor"))
                                 .cornerRadius(10)
-                        }.sheet(isPresented: self.$isPresented) {
-                            SignUpView()
                         }
+                        }.navigationBarTitle(Text("Back"), displayMode: .inline)
+                        .navigationBarHidden(true)
+                    }
+                }.onAppear(){
+                    //Notify to update the UI
+                    NotificationCenter.default.addObserver(forName: NSNotification.Name("statusChange"), object: nil, queue: .main) { (_) in
+                        DispatchQueue.main.async {
+                            self.isPreferencesPresented = UserDefaults.standard.bool(forKey: "googleLogged-in")
+                        }
+                        
                     }
                 }
                     
                 }
-            }
+            }.accentColor(Color("secondColor"))
         }
     }
 }

@@ -65,6 +65,7 @@ struct SettingView: View {
                             try firebaseAuth.signOut()
                             self.presentationMode.wrappedValue.dismiss()
                             UserDefaults.standard.set(false, forKey: "logged-in")
+                            UserDefaults.standard.set(false, forKey: "googleLogged-in")
                             NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
                         } catch let signOutError as NSError {
                             print ("Error signing out: %@", signOutError)

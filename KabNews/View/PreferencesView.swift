@@ -29,6 +29,7 @@ struct PreferencesView: View {
                         .font(.largeTitle)
                         .bold()
                     Form{
+                        //COUNTRY PICKER
                         Picker(selection: $selectedCountry, label: Text("Country")){
                             ForEach(0..<countries.count){
                                 Text(self.countries[$0]).tag($0)
@@ -42,10 +43,11 @@ struct PreferencesView: View {
                         
                     }.padding(.vertical)
                     .background(Color("baseColor"))
-                    
+                    //NEXT BUTTON
                     Button(action: {
                         UserDefaults.standard.set(self.selectedCountry, forKey: "country-selected")
                         UserDefaults.standard.set(self.name, forKey: "user-name")
+                        UserDefaults.standard.set(true, forKey: "logged-in")
                         NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
                     }, label: {
                         Text("Next")
@@ -58,7 +60,16 @@ struct PreferencesView: View {
                             .padding(.bottom)
                     })
                     
+                }.onAppear(){
+                    //Notify to update the UI
+                    NotificationCenter.default.addObserver(forName: NSNotification.Name("statusChange"), object: nil, queue: .main) { (_) in
+                        DispatchQueue.main.async {
+                            self.name = UserDefaults.standard.string(forKey: "user-name") ?? ""
+                        }
+                        
+                    }
                 }
+
             }
     }
 }
