@@ -53,32 +53,33 @@ struct SignUpView: View {
                 .overlay(RoundedRectangle(cornerRadius: 10)
                             .stroke(Color("secondColor"), lineWidth: 4))
                 //SIGNUP BUTTON
-                NavigationLink(destination: PreferencesView(), isActive: $isPresented){
-                    Button(action:{
-                        Auth.auth().createUser(withEmail: self.email, password: self.password) { authResult, error in
-                            if error != nil{
-                                print(error!)
-                                self.alert = Alert(title: Text("Sign-in failed"), message: Text("error: \(error!.localizedDescription)"), dismissButton: .cancel())
-                                self.showingAlert.toggle()
-                                return
-                            }
-                            print(authResult?.user.email ?? "no name" )
-                            UserDefaults.standard.set(self.name, forKey: "user-name")
-                            self.isPresented.toggle()
-                            NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
+                Button(action:{
+                    Auth.auth().createUser(withEmail: self.email, password: self.password) { authResult, error in
+                        if error != nil{
+                            print(error!)
+                            self.alert = Alert(title: Text("Sign-in failed"), message: Text("error: \(error!.localizedDescription)"), dismissButton: .cancel())
+                            self.showingAlert.toggle()
+                            return
                         }
-                        
-                    } ){
-                        Text("SIGNUP")
-                            .bold()
-                            .padding(.horizontal)
-                            .frame(width: UIScreen.main.bounds.width - 100,height: 50 ,alignment: .center)
-                            .foregroundColor(Color.white)
-                            .background(Color("secondColor"))
-                            .cornerRadius(10)
-                    }.alert(isPresented: self.$showingAlert){
-                        self.alert!
+                        print(authResult?.user.email ?? "no name" )
+                        UserDefaults.standard.set(self.name, forKey: "user-name")
+                        self.isPresented.toggle()
+                        NotificationCenter.default.post(name: NSNotification.Name("statusChange"), object: nil)
                     }
+                    
+                } ){
+                    Text("SIGNUP")
+                        .bold()
+                        .padding(.horizontal)
+                        .frame(width: UIScreen.main.bounds.width - 100,height: 50 ,alignment: .center)
+                        .foregroundColor(Color.white)
+                        .background(Color("secondColor"))
+                        .cornerRadius(10)
+                }.sheet(isPresented: $isPresented){
+                    PreferencesView()
+                }
+                .alert(isPresented: self.$showingAlert){
+                    self.alert!
                 }
             }
         }

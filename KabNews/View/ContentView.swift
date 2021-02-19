@@ -16,10 +16,11 @@ struct ContentView: View {
         VStack{
             if isLoggedIn{
                 //AnyView(SettingView().environmentObject(newsManager))
-                AnyView(MainView().environmentObject(newsManager))
+                
+                MainView().environmentObject(newsManager)
             }
             else{
-                AnyView(LogInView())
+                LogInView()
             }
         }.onAppear(){
             //Notify to update the UI 
