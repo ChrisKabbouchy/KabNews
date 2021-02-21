@@ -12,6 +12,7 @@ import GoogleSignIn
 
 struct LogInView: View {
     
+    @Environment(\.verticalSizeClass) var sizeClass
     @State var email :  String = ""
     @State var password : String = ""
     @State var isPresented : Bool = false

@@ -10,6 +10,7 @@ import SwiftUI
 
 struct MainView: View {
     
+    @Environment(\.verticalSizeClass) var sizeClass
     @EnvironmentObject var newsManager : NewsManager
     
     var body: some View {

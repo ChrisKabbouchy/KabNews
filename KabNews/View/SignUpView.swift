@@ -11,6 +11,7 @@ import Firebase
 import GoogleSignIn
 
 struct SignUpView: View {
+    @Environment(\.verticalSizeClass) var sizeClass
     @State var email :  String = ""
     @State var password : String = ""
     @State var name : String = ""
