@@ -14,7 +14,7 @@ struct HighlightView: View {
     @Environment(\.verticalSizeClass) var sizeClass
     @EnvironmentObject var newsItem : NewsManager
     var newsCategory : [NewsModel]
-    @State var newsID : Int
+    @Binding var newsID : Int
     @State var isPresented = false
     
     var body: some View {

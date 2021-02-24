@@ -45,9 +45,7 @@ struct HotTopicsView : View {
                                 .cornerRadius(40)
                                 .padding([.leading])
                                 //Open the highlight view when the selected news is pressed
-                                .sheet(isPresented: self.$isPressed){
-                                    HighlightView(newsCategory: self.newsManager.news, newsID: self.newsID ).environmentObject(self.newsManager)
-                                }
+                                
                         }
                         //MARK: -Landscape Mode
                         else{
@@ -70,11 +68,11 @@ struct HotTopicsView : View {
                                 .cornerRadius(40)
                                 .padding([.leading])
                                 //Open the highlight view when the selected news is pressed
-                                .sheet(isPresented: self.$isPressed){
-                                    HighlightView(newsCategory: self.newsManager.news, newsID: self.newsID ).environmentObject(self.newsManager)
-                                }
+                                
                         }
-                    }.buttonStyle(PlainButtonStyle())
+                    }.sheet(isPresented: self.$isPressed){
+                        HighlightView(newsCategory: self.newsManager.news, newsID: self.$newsID ).environmentObject(self.newsManager)
+                    }
                     
                 }
             }

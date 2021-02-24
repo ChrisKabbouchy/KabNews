@@ -36,7 +36,7 @@ struct LatestNewsView: View {
                                 
                                 //open the selected news when pressed
                                 .sheet(isPresented: self.$isPressed){
-                                    HighlightView(newsCategory: self.newsManager.latestNews, newsID: self.newsID ).environmentObject(self.newsManager)
+                                    HighlightView(newsCategory: self.newsManager.latestNews, newsID: self.$newsID ).environmentObject(self.newsManager)
                                 }
                         }
                         //MARK: -Landscape Mode
@@ -51,7 +51,7 @@ struct LatestNewsView: View {
                                 
                                 //open the selected news when pressed
                                 .sheet(isPresented: self.$isPressed){
-                                    HighlightView(newsCategory: self.newsManager.latestNews, newsID: self.newsID ).environmentObject(self.newsManager)
+                                    HighlightView(newsCategory: self.newsManager.latestNews, newsID: self.$newsID ).environmentObject(self.newsManager)
                                 }
                         }
                     }.buttonStyle(PlainButtonStyle())
