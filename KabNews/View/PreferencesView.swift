@@ -48,10 +48,8 @@ struct PreferencesView: View {
                 Button(action: {
                     UserDefaults.standard.set(self.selectedCountry, forKey: "country-selected")
                     UserDefaults.standard.set(self.name, forKey: "user-name")
-                    //UserDefaults.standard.set(true, forKey: "logged-in")
                     self.newsManager.fetchNewsData()
                     self.newsManager.fetchLatestNews(with: "technology", isSearchResult: false)
-                    //UIApplication.shared.keyWindow?.rootViewController?.dismiss(animated: true)
                     self.presentationMode.wrappedValue.dismiss()
                     NotificationCenter.default.post(name: NSNotification.Name("PreferencesChange"), object: nil)
                 }, label: {

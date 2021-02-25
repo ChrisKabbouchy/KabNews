@@ -27,26 +27,53 @@ struct LogInView: View {
             Color("baseColor")
                 .edgesIgnoringSafeArea(.all)
             VStack(alignment: .center, spacing: 20){
-                Text("Login")
-                    .font(.title)
-                    .bold()
-                    .padding()
-                //email text field
-                HStack(){
-                    Image(systemName: "envelope.fill")
-                        .padding(.horizontal)
-                    TextField("Enter your email", text: self.$email)
-                }.frame(width:UIScreen.main.bounds.width - 100,height: 50 )
-                .overlay(RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color("secondColor"), lineWidth: 4))
-                //password text field
-                HStack{
-                    Image(systemName: "lock.fill")
-                        .padding(.horizontal)
-                    SecureField("Enter your password", text: self.$password)
-                }.frame(width:UIScreen.main.bounds.width - 100,height: 50 )
-                .overlay(RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color("secondColor"), lineWidth: 4))
+                //MARK: -Portrait Mode
+                if sizeClass == .regular {
+                    Text("Login")
+                        .font(.title)
+                        .bold()
+                        .padding()
+                    //email text field
+                    HStack(){
+                        Image(systemName: "envelope.fill")
+                            .padding(.horizontal)
+                        TextField("Enter your email", text: self.$email)
+                    }.frame(width:UIScreen.main.bounds.width - 100,height: 50 )
+                    .overlay(RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color("secondColor"), lineWidth: 4))
+                    //password text field
+                    HStack{
+                        Image(systemName: "lock.fill")
+                            .padding(.horizontal)
+                        SecureField("Enter your password", text: self.$password)
+                    }.frame(width:UIScreen.main.bounds.width - 100,height: 50 )
+                    .overlay(RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color("secondColor"), lineWidth: 4))
+                }
+                else{
+                    //MARK: -Landscape Mode
+                    Text("Login")
+                        .font(.title)
+                        .bold()
+                        .padding()
+                    //email text field
+                    HStack{
+                        HStack(){
+                            Image(systemName: "envelope.fill")
+                                .padding(.horizontal)
+                            TextField("Enter your email", text: self.$email)
+                        }.frame(width:UIScreen.main.bounds.height - 100,height: 40 )
+                        .overlay(RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color("secondColor"), lineWidth: 4))
+                        //password text field
+                        HStack{
+                            Image(systemName: "lock.fill")
+                                .padding(.horizontal)
+                            SecureField("Enter your password", text: self.$password)
+                        }.frame(width:UIScreen.main.bounds.height - 100,height: 40 )
+                        .overlay(RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color("secondColor"), lineWidth: 4))
+                    }}
                 //Login button
                 Button(action:{
                     Auth.auth().signIn(withEmail: self.email, password: self.password) { authResult, error in
@@ -63,13 +90,27 @@ struct LogInView: View {
                     
                 }
                 ){
-                    Text("LOGIN")
-                        .bold()
-                        .padding(.horizontal)
-                        .frame(width:UIScreen.main.bounds.width - 100,height: 50 ,alignment: .center)
-                        .foregroundColor(Color.white)
-                        .background(Color("secondColor"))
-                        .cornerRadius(10)
+                    if sizeClass == .regular {
+                        //Portarit
+                        Text("LOGIN")
+                            .bold()
+                            .padding(.horizontal)
+                            .frame(width:UIScreen.main.bounds.width - 100,height: 50 ,alignment: .center)
+                            .foregroundColor(Color.white)
+                            .background(Color("secondColor"))
+                            .cornerRadius(10)
+                    }
+                    else{
+                        //Landscape
+                        Text("LOGIN")
+                            .bold()
+                            .padding(.horizontal)
+                            .frame(width:UIScreen.main.bounds.height - 100,height: 40 ,alignment: .center)
+                            .foregroundColor(Color.white)
+                            .background(Color("secondColor"))
+                            .cornerRadius(10)
+                    }
+                    
                 }.sheet(isPresented: $isPreferencesPresented){
                     PreferencesView()
                 }
@@ -78,7 +119,7 @@ struct LogInView: View {
                 }
                 //google sign in button
                 GoogleSignView()
-                    .frame(width: 150, height: 50)
+                    .frame(width: 150, height: 40)
                 
                 VStack{
                     Text("Don't have an account yet?")
@@ -90,6 +131,7 @@ struct LogInView: View {
                         Text("SignUp")
                             .bold()
                             .foregroundColor(Color.white)
+                            .frame(height:20)
                             .padding()
                             .background(Color("secondColor"))
                             .cornerRadius(10)
@@ -119,6 +161,7 @@ struct LogInView: View {
         }
     }
 }
+//MARK: -Google SingView
 struct GoogleSignView : UIViewRepresentable {
     
     func makeUIView(context: UIViewRepresentableContext<GoogleSignView>) -> GIDSignInButton {

@@ -25,34 +25,68 @@ struct SignUpView: View {
             Color("baseColor")
                 .edgesIgnoringSafeArea(.all)
             VStack(alignment: .center , spacing: 20){
-                Text("SignUp")
-                    .font(.title)
-                    .bold()
-                    .padding()
-                //Name text field
-                HStack(alignment: .center){
-                    Image(systemName: "person.fill")
-                        .padding(.horizontal)
-                    TextField("Enter your name", text: self.$name)
-                }.frame(width:UIScreen.main.bounds.width - 100,height: 50 )
-                .overlay(RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color("secondColor"), lineWidth: 4))
-                //Email text field
-                HStack(){
-                    Image(systemName: "envelope.fill")
-                        .padding(.horizontal)
-                    TextField("Enter your email", text: self.$email)
-                }.frame(width:UIScreen.main.bounds.width - 100,height: 50 )
-                .overlay(RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color("secondColor"), lineWidth: 4))
-                //Password field
-                HStack{
-                    Image(systemName: "lock.fill")
-                        .padding(.horizontal)
-                    SecureField("Enter your password", text: self.$password)
-                }.frame(width:UIScreen.main.bounds.width - 100,height: 50 )
-                .overlay(RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color("secondColor"), lineWidth: 4))
+                //MARK: -Portrait Mode
+                if sizeClass == .regular {
+                    Text("SignUp")
+                        .font(.title)
+                        .bold()
+                        .padding()
+                    //Name text field
+                    HStack(alignment: .center){
+                        Image(systemName: "person.fill")
+                            .padding(.horizontal)
+                        TextField("Enter your name", text: self.$name)
+                    }.frame(width:UIScreen.main.bounds.width - 100,height: 50 )
+                    .overlay(RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color("secondColor"), lineWidth: 4))
+                    //Email text field
+                    HStack(){
+                        Image(systemName: "envelope.fill")
+                            .padding(.horizontal)
+                        TextField("Enter your email", text: self.$email)
+                    }.frame(width:UIScreen.main.bounds.width - 100,height: 50 )
+                    .overlay(RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color("secondColor"), lineWidth: 4))
+                    //Password field
+                    HStack{
+                        Image(systemName: "lock.fill")
+                            .padding(.horizontal)
+                        SecureField("Enter your password", text: self.$password)
+                    }.frame(width:UIScreen.main.bounds.width - 100,height: 50 )
+                    .overlay(RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color("secondColor"), lineWidth: 4))
+                }
+                //MARK: -Landscape Mode
+                else{
+                    Text("SignUp")
+                        .font(.title)
+                        .bold()
+                        .padding()
+                    //Name text field
+                    HStack(alignment: .center){
+                        Image(systemName: "person.fill")
+                            .padding(.horizontal)
+                        TextField("Enter your name", text: self.$name)
+                    }.frame(width:UIScreen.main.bounds.height - 100,height: 50 )
+                    .overlay(RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color("secondColor"), lineWidth: 4))
+                    //Email text field
+                    HStack(){
+                        Image(systemName: "envelope.fill")
+                            .padding(.horizontal)
+                        TextField("Enter your email", text: self.$email)
+                    }.frame(width:UIScreen.main.bounds.height - 100,height: 50 )
+                    .overlay(RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color("secondColor"), lineWidth: 4))
+                    //Password field
+                    HStack{
+                        Image(systemName: "lock.fill")
+                            .padding(.horizontal)
+                        SecureField("Enter your password", text: self.$password)
+                    }.frame(width:UIScreen.main.bounds.height - 100,height: 50 )
+                    .overlay(RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color("secondColor"), lineWidth: 4))
+                }
                 //SIGNUP BUTTON
                 Button(action:{
                     Auth.auth().createUser(withEmail: self.email, password: self.password) { authResult, error in
@@ -69,13 +103,26 @@ struct SignUpView: View {
                     }
                     
                 } ){
-                    Text("SIGNUP")
-                        .bold()
-                        .padding(.horizontal)
-                        .frame(width: UIScreen.main.bounds.width - 100,height: 50 ,alignment: .center)
-                        .foregroundColor(Color.white)
-                        .background(Color("secondColor"))
-                        .cornerRadius(10)
+                    //Portrait
+                    if sizeClass == .regular {
+                        Text("SIGNUP")
+                            .bold()
+                            .padding(.horizontal)
+                            .frame(width: UIScreen.main.bounds.width - 100,height: 50 ,alignment: .center)
+                            .foregroundColor(Color.white)
+                            .background(Color("secondColor"))
+                            .cornerRadius(10)
+                    }
+                    //Landscape
+                    else{
+                        Text("SIGNUP")
+                            .bold()
+                            .padding(.horizontal)
+                            .frame(width: UIScreen.main.bounds.height - 100,height: 50 ,alignment: .center)
+                            .foregroundColor(Color.white)
+                            .background(Color("secondColor"))
+                            .cornerRadius(10)
+                    }
                 }.sheet(isPresented: $isPresented){
                     PreferencesView()
                 }
